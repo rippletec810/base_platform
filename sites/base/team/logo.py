@@ -26,4 +26,4 @@ class BaseTeamDetailGet:
 
         teaminfo = db.select('teaminfo', vars = {'id':input.team_id},
                              where = "team_id=$id", what = "logo_base64")[0]
-        return output(200, {'team_id':input.team_id,  'logo_base64':teaminfo.logo_base64})
+        return output(200, {'team_id':input.team_id,  'content':teaminfo.logo_base64})
