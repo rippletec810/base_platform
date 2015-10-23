@@ -24,4 +24,12 @@ class UserTeamMemberList:
 
         team_id = session['team_id']
         db = getDb()
-        results = db.select('user', vars = {'id':team_id}, where = "team_id=$id")
+        results = db.select('user', vars = {'id':team_id}, where = "team_id=$id",
+                            what = 'user_id, type')
+        member_list = []
+        for i in results:
+            member_list.append({'user_id':i.user_id, 'type':int(i.type) - 2})
+        for i in member_list:
+            i['name'] = db.select('userinfo', vars = {'id':i['user_id']},
+                                  where = 'user_id=$id', what = 'name')[0].name
+        return output(200, member_list)
