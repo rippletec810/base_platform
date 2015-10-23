@@ -34,15 +34,15 @@ class AdminCommunityReplyList:
         if len(db.select('section',vars={'id':input.section_id},where='section_id=$id')) == 0:
             return output(465)
 
-        count = db.select('post', vars = {'id':input.section_id}, wherer = "section_id=$id",
-                          what = "count(*) as num")[0].num
+        count = db.select('post', vars = {'id':input.section_id}, where = "section_id=$id",
+                          what = s"count(*) as num")[0].num
         results = db.select('post', vars = {'id':input.section_id, 'start': (input.page_num - 1) * input.page_size,
                                             'count': input.page_size},
                             where = "section_id=$id",
                             limit = "$start,$count",
                             order = 'add_time desc, post_id desc')
         for i in results:
-            post_list.append({'post_id':i.reply_id,'content':i.content,'user_id':i.user_id,
+            post_list.append({'post_id':i.post_id,'content':i.content,'user_id':i.user_id,
                               'title':i.title, 'add_time':i.add_time})
         for i in post_list:
             results = db.select('userinfo', vars = {'id':i['user_id']}, where = "user_id=$id")
