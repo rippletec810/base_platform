@@ -53,7 +53,7 @@ class TeamAccountDecrease:
                       add_time = int(time.mktime(time.localtime())), type = 'admin-de', num = 1)
             t.commit()
         except:
-            t.rollbakc()
+            t.rollback()
             return output(700)
 
         return output(200)
