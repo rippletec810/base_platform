@@ -35,7 +35,7 @@ class AdminCommunityReplyList:
             return output(465)
 
         count = db.select('post', vars = {'id':input.section_id}, where = "section_id=$id",
-                          what = s"count(*) as num")[0].num
+                          what = "count(*) as num")[0].num
         results = db.select('post', vars = {'id':input.section_id, 'start': (input.page_num - 1) * input.page_size,
                                             'count': input.page_size},
                             where = "section_id=$id",
