@@ -39,6 +39,7 @@ class TeamRecruitRequestApprove:
             db.update('request', vars = vars, where = where, status='approved')
             db.update('user', vars = {'id':user_id}, where = "user_id=$id", team_id = team_id,
                       type = '4')
+            db.delete('request', vars = {'id':user_id}, where = "user_id=$id and status='ongoing'")
             t.commit()
         except:
             t.rollback()
