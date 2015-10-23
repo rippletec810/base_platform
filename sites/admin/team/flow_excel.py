@@ -47,8 +47,7 @@ class TeamFlowExcelExport:
             return output(464)
 
         flow_list = []
-        vars = {'id':input.team_id, 'num':input.page_size * (input.page_num - 1), 'size':input.page_size}
-        limit = "$num,$size"
+        vars = {'id':input.team_id}
         if input.start_date == None:
             where = "team_id=$id"
         else:

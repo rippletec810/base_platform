@@ -11,7 +11,8 @@ from database import *
 @route('/account/record/list')
 class UserTeamRecordList:
     def POST(self):
-        input = web.input(team_id = None, start_date = None, end_date = None, page_num = None, page_size = None)
+        input = web.input(team_id = None, start_date = None, end_date = None,
+                          page_num = None, page_size = None)
         if input.page_num == None or input.page_size == None:
             return output(110)
         if input.start_date != None and input.end_date == None:
