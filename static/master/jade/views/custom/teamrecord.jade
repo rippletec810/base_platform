@@ -1,0 +1,31 @@
+h3 团队流水
+  small Edit in User
+
+.container-fluid(ng-controller="usermanagementController as table")
+  form.form-inline(role='form')
+        .row.panel-heading.form-horizontal
+          .form-group.pull-right.list-inline.panel-heading
+            label.col-sm-4.control-label 团队
+            .col-sm-8
+              select.form-control(name='account' ng-change='table.loadUserList()' ng-options='team.team_id as team.team_name for team in table.teams' ng-model='selectTeam')
+.table-responsive.b0
+  table.table.table-hover(datatable='')
+    thead.bg-white
+      tr
+        th(style='width:80px')
+          strong ID
+        th
+          strong 时间
+        th
+          strong 操作人
+        th
+          strong 支出描述
+        th
+          strong 总支出(元)
+    tbody
+      tr
+        td 0001
+        td 03/11/2015
+        td 阮进益
+        td 主要用于椅子购买
+        td -300

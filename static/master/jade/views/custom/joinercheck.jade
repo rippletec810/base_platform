@@ -1,0 +1,34 @@
+h3 招聘成员
+  small Check for Teamworker
+
+.container-fluid(ng-controller="JoinerController as table")
+  // Editable row
+  h4.page-header 申请列表
+
+  table.table.table-bordered.table-hover.bg-white
+    tr(style='font-weight: bold')
+      td(style='width:50%') 招聘标题
+      td(style='width:20%') 姓名
+      td(style='width:20%') 手机号码
+      td(style='width:20%') QQ     
+    tr(ng-repeat='joiner in table.joiners')
+      td
+        // editable joinername (text with validation)
+        span(editable-text='joiner.title', e-name='name', e-form='rowform', onbeforesave='table.checkName($data, joiner.id)', e-required='') {{ joiner.title || &apos;empty&apos; }}
+      td
+        // editable joinername (text with validation)
+        span(editable-text='joiner.name', e-name='name', e-form='rowform', onbeforesave='table.checkName($data, joiner.id)', e-required='') {{ joiner.name || &apos;empty&apos; }}
+      td
+        // editable joinername (text with validation)
+        span(editable-text='joiner.mobile', e-name='name', e-form='rowform', onbeforesave='table.checkName($data, joiner.id)', e-required='') {{ joiner.mobile || &apos;empty&apos; }}
+      td
+        // editable joinername (text with validation)
+        span(editable-text='joiner.qq', e-name='name', e-form='rowform', onbeforesave='table.checkName($data, joiner.id)', e-required='') {{ joiner.qq || &apos;empty&apos; }}
+      td(style='white-space: nowrap')
+        // form
+        form.form-buttons.form-inline(editable-form='', name='rowform', onbeforesave='table.savejoiner($data, joiner.id)', ng-show='rowform.$visible', shown='table.inserted == joiner')
+        .buttons(ng-show='!rowform.$visible')
+          button.btn.btn-sm.btn-info(title="同意")同意
+          button.btn.btn-sm.btn-danger(title="否决")否决
+  p.text-center(ng-show='!table.joiners||table.joiners.length<1')
+            |暂无任何数据

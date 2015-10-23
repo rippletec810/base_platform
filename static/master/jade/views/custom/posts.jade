@@ -1,0 +1,93 @@
+h3 帖子管理
+  small Edit in Posts
+
+.table-grid.table-grid-desktop(ng-controller="MailboxController as mailbox")
+  .col.col-md
+    .panel-footer
+      .row.form-horizontal
+        .col-lg-4
+          .pull-left
+            button.btn.btn-sm.btn-default 批量删除
+          .pull-left
+            label.col-sm-4.control-label 模块
+            .col-sm-8
+              select.form-control(name='account')
+                option(ng-value='1') 板块1465465456
+                option(ng-value='2') 板块2
+                option(ng-value='3') 板块3
+        .col-lg-6
+          
+        .col-lg-2.text-right
+          ul.pagination.pagination-sm
+            li.active: a(href='#') 1
+            li: a(href='#') 2
+            li: a(href='#') 3
+            li: a(href='#') »
+    .table-responsive
+      table#table-ext-2.table.table-striped.table-bordered.table-hover
+        thead
+          tr
+            th(check-all)
+              .checkbox.c-checkbox(data-toggle="tooltip",data-title="Check All")
+                label
+                  input(type='checkbox')
+                  span.fa.fa-check
+            th 帖子详情
+            th 操作
+        tbody
+          tr
+            td
+              .checkbox.c-checkbox
+                label
+                  input(type='checkbox')
+                  span.fa.fa-check
+            td
+              .media
+                  a.pull-left(href='#')
+                    img.media-object.img-responsive.img-circle(src="app/img/user/01.jpg",alt="")
+                  .media-body
+                    .pull-right.badge.baed-info 团队负责人
+                    h4.media-heading 招聘PHP高级程序员6名
+                    p 发布团队: holly123
+                    | 精通PHP, 熟悉MVC架构，能够熟练使用PHP+mysql开发网站程序;
+            td.text-center
+              label
+                button.btn.btn-sm.btn-danger(title="删除")删除
+          tr
+            td
+              .checkbox.c-checkbox
+                label
+                  input(type='checkbox')
+                  span.fa.fa-check
+            td
+              .media
+                  a.pull-left(href='#')
+                    img.media-object.img-responsive.img-circle(src="app/img/user/01.jpg",alt="")
+                  .media-body
+                    .pull-right.badge.baed-info 普通用户
+                    h4.media-heading 招聘PHP高级程序员6名
+                    p 发布团队:波纹团队
+                    | 熟悉ECSHOP, DISCUZ, WORDPRESS,DEDECMS(或其它类型CMS系统)构架及运用, 有利用ECSHOP, DISCUZ, WORDPRESS,DEDECMS建设网站经验者优先;
+            td.text-center
+              label
+                button.btn.btn-sm.btn-danger(title="删除")删除
+          tr
+            td
+              .checkbox.c-checkbox
+                label
+                  input(type='checkbox')
+                  span.fa.fa-check
+            td
+              .media
+                  a.pull-left(href='#')
+                    img.media-object.img-responsive.img-circle(src="app/img/user/01.jpg",alt="")
+                  .media-body
+                    .pull-right.badge.baed-info 二级管理员
+                    h4.media-heading 招聘安卓高级程序员6名
+                    p 发布团队: mariomiles
+                    | 有良好的团队合作意识,耐心、诚恳,有强烈的责任心和积极主动的工作态度;
+            td.text-center
+              label
+                button.btn.btn-sm.btn-danger(title="删除")删除
+    // END table-responsive
+    

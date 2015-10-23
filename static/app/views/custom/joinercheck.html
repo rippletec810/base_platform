@@ -1,0 +1,42 @@
+<h3>招聘成员
+   <small>Check for Teamworker</small>
+</h3>
+<div ng-controller="JoinerController as table" class="container-fluid">
+   <!-- Editable row-->
+   <h4 class="page-header">申请列表</h4>
+   <table class="table table-bordered table-hover bg-white">
+      <tr style="font-weight: bold">
+         <td style="width:50%">招聘标题</td>
+         <td style="width:20%">姓名</td>
+         <td style="width:20%">手机号码</td>
+         <td style="width:20%">QQ</td>
+      </tr>
+      <tr ng-repeat="joiner in table.joiners">
+         <td>
+            <!-- editable joinername (text with validation)-->
+            <span editable-text="joiner.title" e-name="name" e-form="rowform" onbeforesave="table.checkName($data, joiner.id)" e-required="">{{ joiner.title || &apos;empty&apos; }}</span>
+         </td>
+         <td>
+            <!-- editable joinername (text with validation)-->
+            <span editable-text="joiner.name" e-name="name" e-form="rowform" onbeforesave="table.checkName($data, joiner.id)" e-required="">{{ joiner.name || &apos;empty&apos; }}</span>
+         </td>
+         <td>
+            <!-- editable joinername (text with validation)-->
+            <span editable-text="joiner.mobile" e-name="name" e-form="rowform" onbeforesave="table.checkName($data, joiner.id)" e-required="">{{ joiner.mobile || &apos;empty&apos; }}</span>
+         </td>
+         <td>
+            <!-- editable joinername (text with validation)-->
+            <span editable-text="joiner.qq" e-name="name" e-form="rowform" onbeforesave="table.checkName($data, joiner.id)" e-required="">{{ joiner.qq || &apos;empty&apos; }}</span>
+         </td>
+         <td style="white-space: nowrap">
+            <!-- form-->
+            <form editable-form="" name="rowform" onbeforesave="table.savejoiner($data, joiner.id)" ng-show="rowform.$visible" shown="table.inserted == joiner" class="form-buttons form-inline"></form>
+            <div ng-show="!rowform.$visible" class="buttons">
+               <button title="同意" class="btn btn-sm btn-info">同意</button>
+               <button title="否决" class="btn btn-sm btn-danger">否决</button>
+            </div>
+         </td>
+      </tr>
+   </table>
+   <p ng-show="!table.joiners||table.joiners.length&lt;1" class="text-center">暂无任何数据</p>
+</div>

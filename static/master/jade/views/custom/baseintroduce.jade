@@ -1,0 +1,62 @@
+h3 基地介绍
+  small Edit base Introduce
+// START panel
+.panel.panel-default
+    .panel-body
+      form.form-horizontal(method='get', ng-controller="BaseIntroduceCtroller as form")
+        .container-fluid
+          .row
+            .col-md-3
+              .panel
+                .panel-heading 
+                  a.pull-right(href="#", ng-click="form.reset()"): small.fa.fa-refresh.text-muted
+                  | 选择一张LOGO图片
+                .panel-body
+                  .form-group
+                    input#fileInput.form-control(filestyle="", type='file', data-class-button='btn btn-default', data-class-input="form-control", data-button-text="")
+                  p.pv 图形:
+                  .btn-group.btn-group-justified.mb
+                    label.btn.btn-default(ng-model='form.imgcropType', btn-radio="'square'") 正方形
+                    label.btn.btn-default(ng-model='form.imgcropType', btn-radio="'circle'") 圆形
+                  br
+                  .imgcrop-preview(data-text="")
+                    img(ng-src='{{form.myCroppedImage}}')
+            .col-md-9
+              .panel
+                .panel-body
+                  .imgcrop-area
+                    img-crop(image='form.myImage', result-image='form.myCroppedImage', area-type="{{form.imgcropType}}")
+
+        fieldset
+          .form-group
+            label.col-sm-2.control-label 基地的一些介绍,内容控制在300字以上~
+            .col-sm-10
+              script(type='text/ng-template', id="ng-wig/views/ng-wig.html")
+                .ng-wig
+                  .btn-group.btn-group-sm.wd-wide
+                    button.btn.btn-sm.btn-default(type='button', title='Header', ng-click="execCommand('formatblock', '<h1>')")
+                      em.fa.fa-header
+                    button.btn.btn-sm.btn-default(type='button', title='Paragraph', ng-click="execCommand('formatblock', '<p>')")
+                      em.fa.fa-paragraph
+                    button.btn.btn-sm.btn-default(type='button', title='Unordered List', ng-click="execCommand('insertunorderedlist')")
+                      em.fa.fa-list-ul
+                    button.btn.btn-sm.btn-default(type='button', title='Ordered List', ng-click="execCommand('insertorderedlist')")
+                      em.fa.fa-list-ol
+                    button.btn.btn-sm.btn-default(type='button', title='Bold', ng-click="execCommand('bold')")
+                      em.fa.fa-bold
+                    button.btn.btn-sm.btn-default(type='button', title='Italic', ng-click="execCommand('italic')")
+                      em.fa.fa-italic
+                    button.btn.btn-sm.btn-default(type='button', title='link', ng-click="execCommand('createlink')")
+                      em.fa.fa-link
+                    button.pull-right.btn.btn-sm.btn-default(type='button', title="Edit Html" ng-class="{ 'nw-button--active': editMode }", ng-click='toggleEditMode()')
+                      em.fa.fa-pencil
+                  .nw-editor
+                    textarea.nw-editor__src(ng-show="editMode", ng-model="content") 
+                    iframe.nw-editor__res(scrolling="{{ autoexpand ? 'no' : 'yes' }}", frameBorder="0", ng-hide="editMode", ng-model="content", ng-wig-editable='')
+              textarea(ng-wig="form.wysiwygContent") 
+        fieldset
+          .form-group
+            .col-sm-4.col-sm-offset-2
+              button.btn.btn-default(type='submit' ng-click='form.reset()') 取消
+              button.btn.btn-primary(type='submit' ng-click='form.saveIntroduce()') 保存
+// END panel

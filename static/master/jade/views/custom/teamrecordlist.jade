@@ -1,0 +1,73 @@
+h3 记账本
+  button.pull-right.btn.btn-danger(ng-click='todo.clearAll()') 清空所有账单
+  small Book For Team Record
+
+.table-grid.todo
+  .col.col-lg
+    .pr-lg
+
+      form(ng-submit='todo.addTodo(todo)').mb-xl
+        .form-group
+          input.form-control(ng-trim="true", type='text', ng-model='todo.todo.title', placeholder='账单支出', required)
+        .form-group
+          textarea.form-control(ng-trim="true", ng-model='todo.todo.description', placeholder='账单描述', rows="8")
+        
+        button.btn.btn-primary.btn-block(type='submit') {{todo.editingTodo ? '编辑' : '添加'}}
+
+  .col.todo-item-list
+    ul(ng-class="timelineAlt ? 'timeline-alt' : 'timeline'", ng-init="timelineAlt=true")
+      li.timeline-separator(data-datetime="今天")
+      // START timeline item
+      li
+        .timeline-badge.primary
+          em.icon-bag
+        .timeline-panel
+          .popover(ng-class="timelineAlt ? 'right' : 'left'")
+              h4.popover-title 收入100
+              .arrow
+              .popover-content
+                p 收入描述
+      li.timeline-inverted
+        .timeline-badge.warning
+          em.icon-bag
+        .timeline-panel
+          .popover.right
+              h4.popover-title 支出200
+              .arrow
+              .popover-content
+                p 支出描述
+      li.timeline-separator(data-datetime="昨天")
+      // END timeline separator
+      // START timeline item
+      li
+        .timeline-badge.danger
+          em.icon-bag
+        .timeline-panel
+          .popover(ng-class="timelineAlt ? 'right' : 'left'")
+              h4.popover-title 收入1000
+              .arrow
+              .popover-content
+                p 开发项目X
+      li
+        .timeline-badge.info
+          em.icon-bag
+        .timeline-panel
+          .popover(ng-class="timelineAlt ? 'right' : 'left'")
+              h4.popover-title 支出500
+              .arrow
+              .popover-content
+                p 支出描述
+      li.timeline-end
+        a(href="#").timeline-badge
+          em.fa.fa-plus
+    //- accordion(close-others="true")
+    //-   accordion-group.todo-item(ng-repeat='item in todo.items')
+    //-     accordion-heading
+    //-       span.close(ng-click='todo.removeTodo($index, $event)') ×
+    //-         label(ng-click="$event.stopPropagation()")
+    //-       span.todo-title(ng-bind='item.todo.description') 账单标题
+    //-       span.todo-edit.icon-pencil(ng-click="todo.editTodo($index, $event)")
+    //-     p
+    //-       span(ng-bind='item.todo.title') 
+    //-       span.text-muted(ng-if="item.todo.description === ''") 没有描述
+    
