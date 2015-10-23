@@ -12,6 +12,10 @@ from output import output
 class BaseTeamDetailGet:
     def POST(self):
         input = web.input(team_id = None)
+        session = web.ctx.session
+        if session.has_key('user_id'):
+            if input.team_id == None and session['user_type'] in (2, 3, 4):
+                input.team_id = session['team_id']
         if input.team_id == None:
             return output(110)
         try:
