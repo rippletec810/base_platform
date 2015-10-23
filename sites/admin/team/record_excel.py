@@ -64,11 +64,12 @@ class AdminAccountRecordExcelExport:
                 type = u'管理员加钱'
             else:
                 type = u'收费项目付款'
+            add_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(i.add_time))
             record_list.append({'payment_id':i.payment_id, 'reason':i.reason, 'amount':i.amount,
-                                'count':i.num, 'add_time':i.add_time, 'type':type})
+                                'count':i.num, 'add_time':add_time, 'type':type})
 
         excel_file = xlwt.Workbook()
-        sheet = excel_file.add_sheet('flow_list')
+        sheet = excel_file.add_sheet('record_list')
         li = [u'id', u'描述', u'类型', u'金额', u'数量', u'增加时间']
         col_name = ['payment_id', 'reason', 'type', 'amount', 'count', 'add_time']
         for col, data in enumerate(li):

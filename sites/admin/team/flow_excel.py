@@ -57,8 +57,9 @@ class TeamFlowExcelExport:
 
         results = db.select('flow', vars = vars, where = where, order = "flow_id asc")
         for i in results:
+            add_time = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(i.add_time))
             flow_list.append({'flow_id':i.flow_id, 'description':i.description, 'amount':i.amount,
-                                'operator_name':i.operator_name, 'add_time':i.add_time})
+                                'operator_name':i.operator_name, 'add_time':add_time})
 
         excel_file = xlwt.Workbook()
         sheet = excel_file.add_sheet('flow_list')
