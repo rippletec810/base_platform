@@ -42,7 +42,6 @@ class CommunityPostDelete:
             except:
                 t.rollback()
                 return output(700)
-                raise
             else:
                 t.commit()
                 return output(200)
@@ -52,7 +51,6 @@ class CommunityPostDelete:
             user_id = result[0].user_id
             #非本人
             if web.ctx.session['user_id'] != user_id:
-
                 return output(410)
 
             t = db.transaction()
@@ -62,7 +60,6 @@ class CommunityPostDelete:
             except:
                 t.rollback()
                 return output(700)
-                raise
             else:
                 t.commit()
                 return output(200)
