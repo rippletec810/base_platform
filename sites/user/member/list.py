@@ -10,9 +10,9 @@ from database import *
 @route('/user/team/member/list')
 class UserTeamMemberList:
     def POST(self):
-        return output(200, UserTeamMemberList.getMemberList())
+        return UserTeamMemberList.getMemberList()
     def GET(self):
-        return output(200, UserTeamMemberList.getMemberList())
+        return UserTeamMemberList.getMemberList()
 
     @staticmethod
     def getMemberList():
