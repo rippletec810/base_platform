@@ -78,7 +78,7 @@ window.onload = function(){
             data = data.data;
             document.getElementById('title').innerHTML = data.title;
             document.getElementById('content').innerHTML = data.content;
-            document.getElementById('count').innerHTML = data.recruit_num;
+            document.getElementById('count').innerHTML = data.recruit_num + '人';
             document.getElementById('team_name').innerHTML = data.team_name;
             document.getElementById('team').href = 'teamIntroduce.html?team_id=' + data.team_id;
         }

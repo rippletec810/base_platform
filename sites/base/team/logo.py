@@ -8,7 +8,7 @@ from route import route
 from database import *
 from output import output
 
-@route('/base/team/detail/get')
+@route('/base/team/logo/get')
 class BaseTeamDetailGet:
     def POST(self):
         input = web.input(team_id = None)
