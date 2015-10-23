@@ -33,4 +33,4 @@ class TeamApplyExcelGet:
         if len(results) == 0:
             return output(469)
 
-        return base64.b64decode(results[0].excel_file)
+        return output(200, {'content': results[0].excel_file})
