@@ -32,7 +32,7 @@
     "icon": "icon-wallet",
     "label": "label label-info", 
     "submenu": [
-      {"text": "团队流水",       "sref": "team.orders"},
+      {"text": "团队补贴",       "sref": "team.orders"},
       {"text": "记账本",       "sref": "team.record"}
     ],
     "translate": "sidebar.nav.MONEYMANEGE"

@@ -32,8 +32,9 @@
             <!-- form-->
             <form editable-form="" name="rowform" onbeforesave="table.saveUser($data, team.id)" ng-show="rowform.$visible" shown="table.inserted == team" class="form-buttons form-inline"></form>
             <div ng-show="!rowform.$visible" class="buttons">
-               <button title="同意" ng-click="passApply()" class="btn btn-sm btn-info">同意</button>
-               <button title="否决" ng-click="rejectApply()" class="btn btn-sm btn-danger">否决</button>
+               <button ng-click="getExcel(team.application_id)" class="btn btn-sm btn-default">导出EXCEL</button>
+               <button title="同意" ng-click="passApply(team.application_id)" class="btn btn-sm btn-info">同意</button>
+               <button title="否决" ng-click="rejectApply(team.application_id)" class="btn btn-sm btn-danger">否决</button>
             </div>
          </td>
       </tr>

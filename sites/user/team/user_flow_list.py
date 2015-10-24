@@ -37,8 +37,18 @@ class UserTeamFlowList:
 
         db = getDb()
         flow_list = []
-        results = db.select('flow', vars = {'id': session['team_id']}, where = "team_id=$id",
-                            order = "add_time desc, flow_id desc")
+        order = "add_time desc, flow_id desc"
+        limit = '0,$count'
+        if input.is_refresh == 0:
+            vars = {'id':session['team_id'], 'count':input.flow_count, 'last_id':input.last_flow_id}
+            where = 'team_id=$id and flow_id<$last_id'
+            results = db.select('flow', vars = vars, where = where,
+                            order = order)
+        else:
+            vars = {'id':session['team_id'], 'count':input.flow_count}
+            where = 'team_id=$id'
+            results = db.select('flow', vars = vars, where = where,
+                            order = order)
 
         for i in results:
             flow_list.append({'flow_id':i.flow_id, 'description':i.description, 'amount':i.amount,
