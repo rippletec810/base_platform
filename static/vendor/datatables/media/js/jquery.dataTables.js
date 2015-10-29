@@ -11451,7 +11451,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "查询不到任何记录"
 		},
 	
 	

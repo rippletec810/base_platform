@@ -45,9 +45,11 @@
                            <img src="app/img/user/01.jpg" alt="" class="media-object img-responsive img-circle" />
                         </a>
                         <div class="media-body">
-                           <div class="pull-right badge baed-info">{{::add_time|fromNow}}</div>
-                           <h4 ng-bind="::post.title" ng-click="pag.gotoDetail(post.recruit_id)" class="media-heading"></h4>
-                           <p>发布团队: {{::post.team_name}}</p>{{::post.content | removeTag | limitTo:100}}</div>
+                           <div style="cursor:pointer;" ui-sref="admin.view({mid:{{post.recruit_id}}})">
+                              <div class="pull-right badge baed-info">{{::add_time|fromNow}}</div>
+                              <h4 ng-bind="::post.title" class="media-heading"></h4>
+                              <p>发布团队: {{::post.team_name}}</p>{{::post.content | removeTag | limitTo:100}}</div>
+                        </div>
                      </div>
                   </td>
                   <td class="text-center">

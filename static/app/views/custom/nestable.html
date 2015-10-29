@@ -1,0 +1,42 @@
+<h3>收支类型管理
+   <small>Payment Type Management</small>
+</h3>
+<div ng-controller="NestableController as nest" class="container-fluid">
+   <div class="row">
+      <div class="col-md-4">
+         <h4 class="text-left Sub-heading">已存在的级联列表</h4>
+      </div>
+      <div class="col-md-2"></div>
+      <div class="col-md-4">
+         <h4 class="text-left Sub-heading">未分配的级联列表</h4>
+      </div>
+   </div>
+   <div class="row">
+      <div class="col-md-4">
+         <div class="panel panel-default well">
+            <div ng-nestable="" ng-model="nest.items">
+               <div>{{$item.text}}</div>
+            </div>
+         </div>
+      </div>
+      <div class="col-md-2">
+         <div>
+            <p class="text-left">请拖动编辑级联列表</p>
+            <small class="text-muted">拖动右边的未分配级联项到左侧级级联菜单</small>
+         </div>
+      </div>
+      <div class="col-md-4">
+         <div class="panel panel-default well">
+            <div ng-nestable="" ng-model="nest.unuseitems" class="show-handlers">
+               <div>{{$item.text}}</div>
+            </div>
+            <form ng-submit="todo.addTodo(todo)" class="mb-xl">
+               <div class="form-group">
+                  <input ng-trim="true" name="amount" type="text" ng-model="todo.todo.amount" placeholder="添加级联项" required="required" class="form-control" />
+               </div>
+            </form>
+            <button type="submit" class="btn btn-primary btn-block">添加</button>
+         </div>
+      </div>
+   </div>
+</div>

@@ -65,10 +65,10 @@
                               <div class="col-md-7">开始使用时间</div>
                            </label>
                            <div class="col-md-12">
-                              <div class="col-md-7">
+                              <div style="margin-top: 31px;" class="col-md-7">
                                  <p class="input-group">
-                                    <input type="text" datepicker-popup="{{format}}" ng-model="apply.starttime" is-open="startopened" max-date="'2017-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
-                                    class="form-control" />
+                                    <input type="text" datepicker-popup="{{format}}" ng-model="apply.starttime" is-open="apply.startopened" max-date="'2017-06-22'" datepicker-options="dateOptions" min-date="minDate" date-disabled="startdisabled(date, mode)"
+                                    ng-required="true" close-text="Close" class="form-control" />
                                     <span class="input-group-btn">
                                        <button type="button" ng-click="startopen($event)" class="btn btn-default">
                                           <em class="icon-calendar"></em>
@@ -77,7 +77,9 @@
                                  </p>
                               </div>
                               <div class="col-md-5">
-                                 <input type="text" masked="" ng-model="apply.startMinue" data-inputmask="'mask': '99:99'" placeholder="请输入时间" class="form-control" />
+                                 <timepicker name="startMinue" required="" ng-model="apply.startMinue" ng-change="changed()" hour-step="apply.hstep" minute-step="apply.mstep" show-meridian="ismeridian"></timepicker>
+                                 <span ng-show="form.validateInput('startMinue', 'required')" class="text-danger">请输入时间</span>
+                                 <!--input.form-control(type='text', masked="",ng-model='apply.startMinue' data-inputmask="'mask': '99:99'", placeholder="请输入时间") -->
                               </div>
                            </div>
                         </div>
@@ -88,9 +90,9 @@
                               <div class="col-md-7">停止使用时间</div>
                            </label>
                            <div class="col-md-12">
-                              <div class="col-md-7">
+                              <div style="margin-top: 31px;" class="col-md-7">
                                  <p class="input-group">
-                                    <input type="text" datepicker-popup="{{format}}" ng-model="apply.endtime" is-open="endopened" max-date="'2017-06-22'" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close"
+                                    <input type="text" datepicker-popup="{{format}}" ng-model="apply.endtime" is-open="apply.endopened" min-date="apply.minDate" max-date="'2017-06-22'" datepicker-options="dateOptions" ng-required="true" close-text="Close"
                                     class="form-control" />
                                     <span class="input-group-btn">
                                        <button type="button" ng-click="endopen($event)" class="btn btn-default">
@@ -100,7 +102,8 @@
                                  </p>
                               </div>
                               <div class="col-md-5">
-                                 <input type="text" masked="" ng-model="apply.endMinue" data-inputmask="'mask': '99:99'" placeholder="请输入时间" class="form-control" />
+                                 <timepicker name="endMinue" required="" ng-model="apply.endMinue" ng-change="changed()" hour-step="apply.hstep" minute-step="apply.mstep" show-meridian="ismeridian"></timepicker>
+                                 <span ng-show="form.validateInput('endMinue', 'required')" class="text-danger">请输入时间</span>
                               </div>
                            </div>
                         </div>

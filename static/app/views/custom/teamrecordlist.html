@@ -1,7 +1,7 @@
 <h3>记账本
    <div class="col-sm-2 pull-right">
-      <select ng-model="todo.selectDate" class="form-control">
-         <option ng-repeat="item in todo.dateList" ng-value="item">{{::item}}</option>
+      <select ng-model="todo.selectDate" ng-change="todo.gotoTarget($event,todo.selectDate)" class="form-control">
+         <option ng-repeat="item in todo.dateList" ng-value="item">{{item}}</option>
       </select>
    </div>
    <small>Book For Team Record</small>
@@ -11,7 +11,7 @@
       <div class="pr-lg">
          <form ng-submit="todo.addTodo(todo)" class="mb-xl">
             <div class="form-group">
-               <input ng-trim="true" type="text" ng-model="todo.todo.amount" placeholder="账单支出" required="required" class="form-control" />
+               <input ng-trim="true" name="amount" type="text" ng-model="todo.todo.amount" placeholder="账单支出" required="required" class="form-control" />
             </div>
             <div class="form-group clearfix">
                <label class="col-sm-3 control-label">类型</label>
@@ -34,10 +34,10 @@
    <div class="col todo-item-list">
       <div ng-repeat="(key,value) in todo.items track by $index">
          <ul ng-class="timelineAlt ? 'timeline-alt' : 'timeline'" ng-init="timelineAlt=true">
-            <li data-datetime="{{::key}}" class="timeline-separator"></li>
+            <li data-datetime="{{::key}}" id="{{key}}" class="timeline-separator"></li>
             <!-- START timeline item-->
             <li ng-repeat="item in value">
-               <div class="timeline-badge primary">
+               <div ng-class="item.class">
                   <em class="icon-bag"></em>
                </div>
                <div class="timeline-panel">
@@ -52,7 +52,7 @@
                </div>
             </li>
             <li ng-if="$last" class="timeline-end">
-               <a href="#" class="timeline-badge">
+               <a ng-click="todo.gotoEdit()" class="timeline-badge">
                   <em class="fa fa-plus"></em>
                </a>
             </li>

@@ -60,6 +60,13 @@
     "translate": "sidebar.nav.BASE"
   },
   {
+    "text": "收支类型管理",
+    "sref": "admin.nestable",
+    "icon": "icon-pie-chart",
+    "label": "label label-info", 
+    "translate": "sidebar.nav.NESTABLE"
+  },
+  {
     "text": "收费项目",
     "sref": "admin.goods",
     "icon": "icon-basket",
@@ -78,7 +85,7 @@
     "translate": "sidebar.nav.COMUNITY"
   },
   {
-    "text": "账户管理",
+    "text": "个人中心",
     "sref": "#",
     "icon": "icon-calculator",
     "label": "label label-info", 
@@ -86,5 +93,12 @@
       {"text": "修改密码",       "sref": "admin.changepassword" }
     ],
     "translate": "sidebar.nav.PERSON"
+  },
+  {
+    "text": "收支类型管理",
+    "sref": "admin.nestable",
+    "icon": "icon-pie-chart",
+    "label": "label label-info", 
+    "translate": "sidebar.nav.NESTABLE"
   }
 ]

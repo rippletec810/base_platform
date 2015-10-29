@@ -80,6 +80,10 @@ header span{ /*顶部标题*/
   color: #fff;
 }
 
+header span.registerCenter{
+	width:50%;
+}
+
 header ul{
   padding-bottom: 10px;
 }
@@ -340,7 +344,7 @@ section.teamIntroduce{
 
 /*社区板块*/
 section.conmuntiy{
-  margin-top:55px;
+  margin-top:50px;
 }
 li.plateList,li.newArticle{
   border-bottom:1px solid rgba(0,0,0,0.2);
@@ -349,9 +353,6 @@ li.plateList,li.newArticle{
   color: #e84e40;
 }
 
-li.newArticle{
-  padding-top:15px;
-}
 .conmuntiy span{
   float: left;
 }
@@ -487,13 +488,15 @@ form.loadForm,form.informationForm,form.postArctile,form.registerForm,form.postA
    padding: 80px 5% 0px 5%; 
    margin-bottom: 100px;
 }
-section.userSection,form.consumption{
+section.userSection,section.consumption{
   width: 90%;
   margin:  80px 5% 100px 5%;
 }
+section.consumption{
+  margin-top:105px;
+}
 
-
-.loadForm input,.registerForm input,.informationForm input,.informationForm select,.informationForm option,.consumption input{
+.loadForm input,.registerForm input,.informationForm input,.informationForm select,.informationForm option{
     width: 94%;
     height:2.2em; 
     display: block;
@@ -505,6 +508,9 @@ section.userSection,form.consumption{
     border-radius:2px;
     background-color:#fff;
 }
+
+
+
 .informationForm div{
   float: left;
   width: 100%;
@@ -565,7 +571,7 @@ button.load,button.register,button.sure,button.post_sure,button.join,button.exit
 
 a.registerLink{
   float: right;
-  width: 10%;
+  width: 20%;
   padding-right: 5%;
   color: #fff;
 }
@@ -588,12 +594,15 @@ a.forgetPassword{ /*忘记密码按钮*/
   margin:-100px 15px 30px 0px;
   text-align: center;
 }
-input.verification{ /*输入验证码*/
+input.verification,input.verification_wordpress{ /*输入验证码*/
   width: 50%;
   margin: 4px 0px 4px 0px;
   text-align:center;
 }
-input.getVerification, button.getVerification{ /*获取验证码*/
+
+
+
+input.getVerification{ /*获取验证码*/
   float: right;
   width: 40%;
   margin: 5px 0px; 
@@ -601,7 +610,10 @@ input.getVerification, button.getVerification{ /*获取验证码*/
   color: #e84e40;
   font-weight:550;
   text-align:center;
+   border-radius:2px;
 }
+
+
 
 span#email_id,span#number_id,span#birthday_id,span#name_id,span#nickname_id,span#qq_id{
   width: 80%;
@@ -700,13 +712,50 @@ footer.accountBalance span{/*余额显示*/
 .consumingReason{
   width: 45%;
 }
-
-form.consumption{
-  display: block;
+.consumption span{
   float: left;
-  margin:25px 5%;
 }
-form.consumption input{
-  line-height: 1.2em;
+.consumption input{
+  float: right;
 }
 
+
+input.text_box{
+  display: block;
+  float: right;
+  width: 15%;
+  text-align: center;
+}
+.consumption_title{
+  width: 35%;
+  text-align: center;
+}
+.price{
+  width: 25%;
+  text-align: center;
+}
+
+
+button.add,button.min{
+  display:block;
+  float:right;
+  width: 27px;
+  height: 27px;
+  border: 1px solid rgba(0,0,0,0.4);
+}
+.consumption_total span,.consumption_total label {
+  display: block;
+  width: 20%;
+  float: left;
+  text-align: center;
+  margin: 10px 15% 0px 15%;
+}
+
+section.recordBook{
+margin-top:50px;
+}
+span.consumingPeople{
+  float:left;
+  text-align:right;
+  width: 23%;
+}

@@ -56,7 +56,8 @@
       "APPLY":"申请新团队",
       "INFO":"完善个人信息",
       "MONEYMANEGE":"资金管理",
-      "APPLY":"申请管理"
+      "APPLY":"申请管理",
+      "NESTABLE":"收支类型管理"
     }
   }
 }
