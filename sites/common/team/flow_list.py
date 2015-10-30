@@ -67,7 +67,8 @@ class TeamFlowList:
                             order = "flow_id desc")
         for i in results:
             flow_list.append({'flow_id':i.flow_id, 'description':i.description, 'amount':i.amount,
-                                'operator_name':i.operator_name, 'add_time':i.add_time})
+                                'operator_name':i.operator_name, 'add_time':i.add_time,
+                              'payment_type_name':i.payment_type_name})
         return output(200, {'flow_count': count, 'page_num': input.page_num, 'page_size': input.page_size,
                             'flow_list': flow_list})
 

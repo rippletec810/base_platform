@@ -11,8 +11,8 @@ import time
 @route('/team/flow/add')
 class TeamFlowAdd:
     def POST(self):
-        input = web.input(description = None, amount = None)
-        if input.description == None or input.amount == None:
+        input = web.input(description = None, amount = None, payment_type_name = None)
+        if input.description == None or input.amount == None or input.payment_type_name == None:
             return output(110)
         try:
             input.amount = float(input.amount)
@@ -30,8 +30,10 @@ class TeamFlowAdd:
         operator_name = db.select('userinfo', vars = {'id':session['user_id']},
                                   where = "user_id=$id", what = 'name')[0].name
         try:
-            db.insert('flow', operator_name = operator_name, description = input.description, amount = input.amount,
-                      team_id = session['team_id'], add_time = int(time.mktime(time.localtime())))
+            db.insert('flow', operator_name = operator_name, description = input.description,
+                      amount = input.amount, team_id = session['team_id'],
+                      payment_type_name = input.payment_type_name,
+                      add_time = int(time.mktime(time.localtime())))
         except:
             return output(700)
         return output(200)

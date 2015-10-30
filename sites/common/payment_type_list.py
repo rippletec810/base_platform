@@ -17,8 +17,5 @@ class PaymentTypeList:
     def getPaymentTypeList():
         db = getDb()
         results = db.select('payment_type')
-        payment_type_list = []
-        for i in results:
-            payment_type_list.append({'payment_type_id':i.payment_type_id, 'type':int(i.type),
-                                      'parent_id':i.parent_id, 'type_name':i.type_name})
+        payment_type_list = results[0].data
         return output(200, payment_type_list)

@@ -10,8 +10,9 @@ import web
 @route('/team/flow/edit')
 class TeamFlowEdit:
     def POST(self):
-        input = web.input(flow_id = None, description = None, amount = None)
-        if input.description == None or input.amount == None or input.flow_id == None:
+        input = web.input(flow_id = None, description = None, amount = None, payment_type_name = None)
+        if (input.description == None or input.amount == None or input.flow_id == None or
+            input.payment_type_name == None):
             return output(110)
         try:
             input.flow_id = int(input.flow_id)
@@ -32,7 +33,8 @@ class TeamFlowEdit:
             return output(472)
         try:
             db.update('flow', vars = {'id': input.flow_id}, where = "flow_id=$id",
-                      description = input.description, amount = input.amount)
+                      description = input.description, amount = input.amount,
+                      payment_type_name = input.payment_type_name)
         except:
             return output(700)
         return output(200)

@@ -52,6 +52,7 @@ class UserTeamFlowList:
 
         for i in results:
             flow_list.append({'flow_id':i.flow_id, 'description':i.description, 'amount':i.amount,
-                                'operator_name':i.operator_name, 'add_time':i.add_time})
+                                'operator_name':i.operator_name, 'add_time':i.add_time,
+                              'payment_type_name':i.payment_type_name})
         return output(200, flow_list)
 

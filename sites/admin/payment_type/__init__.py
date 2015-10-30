@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf8 -*-
 
-__all__ = ['add', 'edit', 'delete']
+__all__ = ['edit']
 
 from . import *

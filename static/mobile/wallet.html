@@ -7,8 +7,8 @@
           charset="utf-8">
     <title>钱包</title>
     <link rel="stylesheet" type="text/css" href="css/common.css">
-    <script src="js/wallet_tab.js" type="text/javascript" charset="utf-8" async defer></script>
     <script type="text/javascript" src="js/jquery.js" charset="utf-8"></script>
+    <script src="js/wallet_tab.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="js/money_check.js" type="text/javascript" charset="utf-8" async defer></script>
     <script src="js/wallet.js" type="text/javascript" charset="utf-8" async defer></script>
 </head>
@@ -57,27 +57,29 @@
         </ul>
     </section>
 
-     <section class="consumption">
-    <ul id="tab"> 
-      <li>
-       <span class="consumption_title">桶装水</span><span class="price">134.50</span>
-       <button class="add" >+</button> 
-       <input class="text_box" name="" type="text" value="0" /> 
-       <button class="min">-</button>  
-      </li>
-        <li> 
-       <span class="consumption_title">桶装水</span><span class="price">134.50</span>
-       <button class="add" >+</button> 
-       <input class="text_box" name="" type="text" value="0" /> 
-       <button class="min">-</button>  
-      </li> 
-     </ul> 
+    <section class="consumption">
+        <ul id="goods_list">
+            <li>
+                <span class="consumption_title">桶装水</span>
+                <span class="price">134.50</span>
+                <button class="add">+</button>
+                <input class="text_box" type="text" value="0"/>
+                <button class="min">-</button>
+            </li>
+            <li>
+                <span class="consumption_title">桶装水</span>
+                <span class="price">134.50</span>
+                <button class="add">+</button>
+                <input class="text_box" type="text" value="0"/>
+                <button class="min">-</button>
+            </li>
+        </ul>
 
 
- <div class="consumption_total"><span>总价</span><label id="total"></label></div> 
-    
- <button class="deductMoney" onclick="#">购买</button>
-</section>
+        <div class="consumption_total"><span>总价</span><label id="total"></label></div>
+
+        <button class="deductMoney" onclick="#">购买</button>
+    </section>
 
 </div>
 

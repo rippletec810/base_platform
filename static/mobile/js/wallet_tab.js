@@ -1,4 +1,4 @@
-var list_name = 'team_list';
+var view_name = 'record_list';
 var recruit_list = [];
 
 function appendListItem(data)
@@ -168,12 +168,10 @@ function showBaseDescription()
 
 function displaySelectedView()
 {
-    if(list_name == 'team_list')
-        showTeamList();
-    else if(list_name == 'recruit_list')
-        showRecruitList();
+    if(view_name == 'record_list')
+        showRecordList();
     else
-        showBaseDescription();
+        showGoodsList();
 }
 
 window.onload=function(){
@@ -189,11 +187,9 @@ window.onload=function(){
     	titles[i].id=i;
     	titles[i].onclick=function(){
             if(this.id == 0)
-                list_name = 'team_list';
-            else if(this.id == 1)
-                list_name = 'recruit_list';
+                view_name = 'record_list';
             else
-                list_name = 'base_desc';
+                view_name = 'goods_list';
             //清楚所有li上的class
     		for(var j=0;j<titles.length;j++){
              titles[j].className='';
