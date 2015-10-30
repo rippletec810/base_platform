@@ -21,9 +21,9 @@
          <thead>
             <tr>
                <th check-all="check-all">
-                  <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+                  <div class="checkbox c-checkbox">
                      <label>
-                        <input type="checkbox" />
+                        <input type="checkbox" ng-click="checkAll($event)" />
                         <span class="fa fa-check"></span>
                      </label>
                   </div>
@@ -64,6 +64,9 @@
          </tbody>
          <script type="text/ng-template" id="confirm">
             <div class="ngdialog-message clearfix"><h3 class="text-center">确定删除该招聘文章?</h3><button type="button" ng-click="confirm()" class="btn btn-primary mr pull-right">确定</button><button type="button" ng-click="closeThisDialog()" class="btn btn-default pull-left">取消</button></div>
+         </script>
+         <script type="text/ng-template" id="allconfirm">
+            <div class="ngdialog-message clearfix"><h3 class="text-center">确定删除选中的文章?</h3><button type="button" ng-click="confirm()" class="btn btn-primary mr pull-right">确定</button><button type="button" ng-click="closeThisDialog()" class="btn btn-default pull-left">取消</button></div>
          </script>
       </table>
    </div>

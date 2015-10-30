@@ -5,8 +5,8 @@
         .module('app.controllers')
         .controller('TeamIntroduceCtroller', TeamIntroduceCtroller)
         
-    TeamIntroduceCtroller.$inject=['$scope','$timeout','schoolResourceApi','APP_PARMAS']
-    function TeamIntroduceCtroller($scope,$timeout,schoolResourceApi,PP_PARMAS) {
+    TeamIntroduceCtroller.$inject=['$scope','$timeout','ngDialog','schoolResourceApi','APP_PARMAS','teamResourceApi']
+    function TeamIntroduceCtroller($scope,$timeout,ngDialog,schoolResourceApi,PP_PARMAS,teamResourceApi) {
       var vm = this;
           vm.wysiwygContent='';
           vm.reset = function() {
@@ -14,11 +14,8 @@
             vm.myCroppedImage = '';
             vm.myImage='';
             vm.imgcropType    = 'square';
-            schoolResourceApi.TeamDetailGet({team_id:9},function(data){
-              $timeout(function(){vm.wysiwygContent=data?data.data.content:'';console.log(vm.wysiwygContent)},0,true)
-            })
-            schoolResourceApi.TeamLogo({team_id:9},function(data){
-              $timeout(function(){vm.myImage= data?DataWrap(data.data.content):'';console.log(vm.myImage)},0,true)             
+            schoolResourceApi.TeamDetailGet(function(data){
+              $timeout(function(){vm.wysiwygContent=data?data.data.description:'';vm.myCroppedImage=data?'data:image/png;base64,'+data.data.logo_base64:'';},0,true)
             })
           };
           function DataWrap(str){

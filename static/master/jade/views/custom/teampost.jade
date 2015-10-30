@@ -18,9 +18,9 @@ h3 招聘管理
       thead
         tr
           th(check-all)
-            .checkbox.c-checkbox(data-toggle="tooltip",data-title="Check All")
+            .checkbox.c-checkbox
               label
-                input(type='checkbox')
+                input(type='checkbox' ng-click='checkAll($event)')
                 span.fa.fa-check
           th 招聘详情
           th 操作
@@ -36,10 +36,11 @@ h3 招聘管理
                 a.pull-left
                   img.media-object.img-responsive.img-circle(src="app/img/user/01.jpg",alt="")
                 .media-body
-                  .pull-right.badge.baed-info {{::add_time|fromNow}}
-                  h4.media-heading(ng-bind="::post.title" ng-click='pag.gotoDetail(post.recruit_id)')
-                  p 发布团队: {{::post.team_name}}
-                  | {{::post.content | removeTag | limitTo:100}}
+                  div(style='cursor:pointer;' ui-sref='team.view({mid:{{post.recruit_id}}})')
+                    .pull-right.badge.baed-info {{::add_time|fromNow}}
+                    h4.media-heading(ng-bind="::post.title")
+                    p 发布团队: {{::post.team_name}}
+                    | {{::post.content | removeTag | limitTo:100}}
           td.text-center
             label
               button.btn.btn-sm.btn-danger(title="删除" ng-click='pag.delectPost(post.recruit_id)') 删除
@@ -48,6 +49,13 @@ h3 招聘管理
         .ngdialog-message.clearfix
           h3.text-center
             | 确定删除该招聘文章?
+          
+          button.btn.btn-primary.mr.pull-right(type='button', ng-click='confirm()') 确定
+          button.btn.btn-default.pull-left(type='button', ng-click="closeThisDialog()") 取消
+      script(type="text/ng-template", id="allconfirm")
+        .ngdialog-message.clearfix
+          h3.text-center
+            | 确定删除选中的文章?
           
           button.btn.btn-primary.mr.pull-right(type='button', ng-click='confirm()') 确定
           button.btn.btn-default.pull-left(type='button', ng-click="closeThisDialog()") 取消

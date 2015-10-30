@@ -4,14 +4,14 @@ h3 成员管理
 .container-fluid(ng-controller="usermanagementController as table")
   form.form-inline(role='form')
         .row.panel-heading.form-horizontal
-          .form-group.pull-right.list-inline.panel-heading
+          .form-group.pull-right.list-inline.panel-heading.col-md-3
             label.col-sm-4.control-label 团队
             .col-sm-8
-              select.form-control(name='account' ng-change='table.loadUserList()' ng-options='team.team_id as team.team_name for team in table.teams' ng-model='selectTeam')
-          .form-group.pull-right.list-inline.panel-heading
+              select.pull-right.form-control(name='account' ng-change='table.loadUserList()' ng-options='team.team_id as team.team_name for team in table.teams' ng-model='selectTeam')
+          .form-group.pull-right.list-inline.panel-heading.col-md-3
             label.col-sm-4.control-label 职位
             .col-sm-8
-              select.form-control(name='account' ng-change='table.loadUserList()' ng-options='type.id as type.name for type in table.types' ng-model='selectType')
+              select.pull-right.form-control(name='account' ng-change='table.loadUserList()' ng-options='type.id as type.name for type in table.types' ng-model='selectType')
   table.table.table-bordered.table-hover.bg-white
     tr(style='font-weight: bold')
       td(style='width:25%') 姓名

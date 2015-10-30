@@ -30,6 +30,11 @@
             }, function (reason) {
       });
     }
+    $scope.getExcel=function(id){
+      adminResourceApi.GetTeamcheckExcel({application_id:id},function(data){
+        window.open('data:application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;base64,'+data.data.content);
+      })
+    }
     $scope.rejectApply=function(id){
       ngDialog.openConfirm({
               template: 'rejectconfirm',

@@ -7,7 +7,7 @@
          <div class="row form-horizontal">
             <div class="col-lg-6">
                <div class="pull-left col-lg-2">
-                  <button class="btn btn-sm btn-default">批量删除</button>
+                  <button ng-click="pag.delectAllPosts()" class="btn btn-sm btn-default">批量删除</button>
                </div>
                <div class="pull-left col-lg-6">
                   <label class="col-lg-4 control-label">模块</label>
@@ -26,9 +26,9 @@
          <thead>
             <tr>
                <th check-all="check-all">
-                  <div data-toggle="tooltip" data-title="Check All" class="checkbox c-checkbox">
+                  <div class="checkbox c-checkbox">
                      <label>
-                        <input type="checkbox" />
+                        <input type="checkbox" ng-click="pag.checkAll($event)" />
                         <span class="fa fa-check"></span>
                      </label>
                   </div>
@@ -72,5 +72,8 @@
    </div>
    <script type="text/ng-template" id="confirm">
       <div class="ngdialog-message clearfix"><h3 class="text-center">确定删除该帖子?</h3><button type="button" ng-click="confirm()" class="btn btn-primary mr pull-right">确定</button><button type="button" ng-click="closeThisDialog()" class="btn btn-default pull-left">取消    </button></div>
+   </script>
+   <script type="text/ng-template" id="allconfirm">
+      <div class="ngdialog-message clearfix"><h3 class="text-center">确定删除选中的帖子?</h3><button type="button" ng-click="confirm()" class="btn btn-primary mr pull-right">确定</button><button type="button" ng-click="closeThisDialog()" class="btn btn-default pull-left">取消  </button></div>
    </script>
 </div>

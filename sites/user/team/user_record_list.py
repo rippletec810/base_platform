@@ -41,7 +41,7 @@ class UserTeamRecordList:
         if input.record_count <= 0:
             return output(112)
 
-        if input.start_date >= input.end_date:
+        if input.start_date != None and input.start_date >= input.end_date:
             return output(112)
 
         session = web.ctx.session

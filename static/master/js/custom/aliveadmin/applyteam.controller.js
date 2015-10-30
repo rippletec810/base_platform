@@ -12,6 +12,7 @@
       $scope.header = '';
       vm.file = null;
       vm.uploadFiles = function(file) {
+        console.log(123456)
         if (file && !file.$error) {
           Upload.dataUrl(file,true).then(function(urls){
             vm.file=urls.slice((urls.indexOf('base64,')+7))

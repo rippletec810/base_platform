@@ -1,13 +1,9 @@
-/**=========================================================
- * Module: demo-pagination.js
- * Provides a simple demo for pagination
- =========================================================*/
 (function() {
   'use strict';
 
   angular
     .module('app.controllers')
-    .controller('TeamPostController', TeamPostController)
+    .controller('BasePostController', BasePostController)
     .filter('fromNow', fromNow)
     .filter('removeTag', removeTag);
 
@@ -26,28 +22,31 @@
       return input;
     }
   }
-  TeamPostController.$inject = ['$timeout', '$state', '$q', 'teamResourceApi', 'paginationConfig', 'ngDialog']
+  BasePostController.$inject = ['$timeout', '$state','$q', 'schoolResourceApi', 'adminResourceApi', 'paginationConfig', 'ngDialog']
 
-  function TeamPostController($timeout, $state, $q, teamResourceApi, paginationConfig, ngDialog) {
+  function BasePostController($timeout, $state,$q, schoolResourceApi, adminResourceApi, paginationConfig, ngDialog) {
     var vm = this;
     vm.maxSize = 1; //最大页码数
     vm.bigCurrentPage = 1;
-    vm.selectAll = false;
     vm.delectAllPosts = function() {
       $timeout(function() {}, 0, true);
       console.log(vm.posts)
     }
-    vm.gotoDetail = function(id) {
-      $state.go('team.view', {
-        mid: id
-      });
+    getSectionList();
+
+    function getSectionList() {
+      adminResourceApi.ModuleQuery(function(data) {
+        vm.sections = data.data;
+        vm.section_id = data.data[0].section_id;
+        vm.getPostList(vm.bigCurrentPage, paginationConfig.itemsPerPage)
+      })
     }
     vm.delectAllPosts = function() {
       var ids = [],
         promiseList = [];
       for (var i in vm.posts) {
         if (vm.posts[i].selected)
-          ids.push(vm.posts[i].recruit_id)
+          ids.push(vm.posts[i].post_id)
       };
       if (ids.length > 0) {
         ngDialog.openConfirm({
@@ -55,8 +54,8 @@
           className: 'ngdialog-theme-default'
         }).then(function(value) {
           for (var i = 0, len = ids.length; i < len; i++)
-            promiseList.push(teamResourceApi.DelectRecruit({
-              recruit_id: ids[i]
+            promiseList.push(schoolResourceApi.PostDelete({
+              post_id: ids[i]
             }).$promise);
           $q.all(promiseList).then(function(){
             vm.openTimed('<h3 class="text-center text-success">删除成功</h3>');
@@ -80,9 +79,10 @@
         template: 'confirm',
         className: 'ngdialog-theme-default'
       }).then(function(value) {
-        teamResourceApi.DelectRecruit({
-          recruit_id: id
+        schoolResourceApi.PostDelete({
+          post_id: id
         }, function(data) {
+          console.log(data);
           vm.openTimed('<h3 class="text-center text-success">删除成功</h3>');
           vm.getPostList(vm.bigCurrentPage, paginationConfig.itemsPerPage);
         })
@@ -100,29 +100,20 @@
       }, 2000);
     };
     vm.getPostList = function(num, size) {
-      teamResourceApi.RecruitQuery({
+      adminResourceApi.PostListQuery({
+        section_id: vm.section_id,
         page_num: num,
         page_size: size
       }, function(data) {
-        for (var i in data.data.recruit_list) {
-          data.data.recruit_list[i]['selected'] = false;
-        };
+        vm.posts = data.data.post_list;
         $timeout(function() {
-          vm.posts = data.data.recruit_list;
           vm.bigTotalItems = data.data.recruit_count;
         }, 0, true)
       })
     }
-    vm.getPostList(vm.bigCurrentPage, paginationConfig.itemsPerPage)
-
-    function activate() {
-      vm.pageChanged = function() {
-        console.log('Page changed to: ' + vm.bigCurrentPage);
-        vm.getPostList(vm.bigCurrentPage, paginationConfig.itemsPerPage)
-      };
-
-      vm.maxSize = 5;
-    }
-    activate();
+    vm.pageChanged = function() {
+      vm.getPostList(vm.bigCurrentPage, paginationConfig.itemsPerPage)
+    };
+    vm.maxSize = 5;
   }
 })();

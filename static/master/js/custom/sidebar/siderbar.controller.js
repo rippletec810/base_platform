@@ -33,6 +33,7 @@
       if (newType && newType.sessionID !== type.sessionID) {
         type = newType;
         $timeout(function() {
+          $rootScope.user.role=type.role?type.role:'';
           $rootScope.user.job = type.role ? APP_PARMAS.ROLENAME[parseInt(type.role)] : '';
         }, 0, true)
         SidebarLoader.getMenu(type ? type.role : '', sidebarReady);

@@ -26,8 +26,16 @@
 		//--基地管理员权限
 		function adminResourceApiFn($resource){
 			return $resource('/admin/:user/:param/:operate/:others', {}, {
+				//--团队补贴Excel导出--
+				TeamRecordExport:{method:'POST',params:{user:'account',param:'record',operate:'excel',others:'export'}},
+				//--帖子列表--
+				PostListQuery:{method:'POST',params:{user:'community',param:'post',operate:'list'}},
+				//--编辑记账本收支类型列表--
+				PaymentEdit:{method:'POST',params:{user:'payment',param:'type',operate:'edit'}},
 				//--获取版块列表（管理员）-- 
 		      	ModuleQuery:{method:'POST',params:{user:'community',param:'section',operate:'list'}},
+		      	//--获取团队审核申请excel--
+		      	GetTeamcheckExcel:{method:'GET',params:{user:'team',param:'apply',operate:'excel',others:'get'}},
 		    	//--获取管理员列表--
 		      	AdminList: {method:'POST', params:{user:'admin',operate:'list'}},
 		      	//--添加二级管理员--
@@ -69,6 +77,24 @@
 			return $resource('/team/:user/:param/:operate', {}, {
 		    	//--编辑团队资料--
 		      	UpdateIntroduce: {method:'POST', params:{param:'detail',operate:'edit'}},
+		      	//--导出流水EXCEL--
+		      	ExportFlowExecl: {method:'POST', params:{user:'flow',param:'excel',operate:'export'}},
+		      	//--通过新成员申请团队--
+		      	PassNewWorker: {method:'POST', params:{user:'recruit',param:'request',operate:'approve'}},
+		      	//--否决新成员申请团队--
+		      	RejectNewWorker: {method:'POST', params:{user:'recruit',param:'request',operate:'decline'}},
+		      	//--流水列表--
+		      	FlowListQuery: {method:'POST', params:{param:'flow',operate:'list'}},
+		      	//--添加流水--
+		      	AddFlow: {method:'POST', params:{param:'flow',operate:'add'}},
+		      	//--编辑流水--
+		      	EditFlow: {method:'POST', params:{param:'flow',operate:'edit'}},
+		      	//--删除流水--
+		      	DeleteFlow: {method:'POST', params:{param:'flow',operate:'delete'}},
+		      	//--批量加钱--
+		      	IncreaseAllMoney: {method:'POST', params:{user:'account',param:'batch',operate:'increase'}},
+		      	//--批量扣钱--
+		      	DecreaseAllMoney: {method:'POST', params:{user:'account',param:'batch',operate:'decrease'}},
 		      	//--团队申请中心--
 		      	ApplyForThing: {method:'POST', params:{user:'room',param:'apply',operate:'add'}},
 		      	//--添加招聘--
@@ -94,7 +120,27 @@
 		function schoolResourceApiFn($resource){
 			return $resource('/:user/:param/:operate/:others', {}, {
 				//--申请物资列表--
-				ApplyThingList:{method:'POST',params:{user:'room',param:'apply',operate:'list'}},	
+				ApplyThingList:{method:'POST',params:{user:'room',param:'apply',operate:'list'}},
+				//--获取记账本收支类型列表--
+				PaymentList:{method:'POST',params:{user:'payment',param:'type',operate:'list'}},
+				//--获取回复列表--
+				RepplyQuery:{method:'POST',params:{user:'community',param:'reply',operate:'list'}},
+				//--发布回复--
+				PostRepplyQuery:{method:'POST',params:{user:'community',param:'reply',operate:'add'}},
+				//--获取帖子详情--
+				GetPostDetail:{method:'POST',params:{user:'community',param:'post',operate:'detail',others:'get'}},
+				//--团队成员升级--
+				UpgradeTeamer:{method:'POST',params:{user:'user',param:'member',operate:'privilege',others:'upgrade'}},
+				//--团队成员降级--
+				DegradeTeamer:{method:'POST',params:{user:'user',param:'member',operate:'privilege',others:'degrade'}},
+				//--剔除团队成员--
+				DeleteTeamer:{method:'POST',params:{user:'user',param:'team',operate:'member',others:'delete'}},
+				//--团队补贴列表--	
+				TeamRecordList:{method:'POST',params:{user:'account',param:'record',operate:'list'}},	
+				//--删除帖子--
+				PostDelete:{method:'POST',params:{user:'community',param:'post',operate:'delete'}},	
+				//--管理员获取流水列表--
+				AdminRecordQuery:{method:'POST',params:{user:'account',param:'record',operate:'list'}},	
 				//--团队LOGO--			
 				TeamLogo:{method:'POST',params:{user:'base',param:'team',operate:'logo',others:'get'}},				
 				//--团队介绍--
@@ -137,6 +183,10 @@
 		      	IntroduceLogoQuery: {method:'GET', params:{user:'base',param:'logo',operate:'get'}},
 		      	//--获取验证码--
 		      	SendCode: {method:'POST', params:{user:'user',param:'verify',operate:'send'}},
+		      	//--用户利用验证码来修改密码--
+		      	ChangePasswordUseCode: {method:'POST', params:{user:'user',param:'password',operate:'verify'}},
+		      	//--忘记密码--
+		      	ForgetCode: {method:'POST', params:{user:'user',param:'password',operate:'forget'}},
 		      	//--用户注册--
 		      	Register: {method:'POST', params:{user:'user',param:'register'}},
 		      	//--申请新团队--

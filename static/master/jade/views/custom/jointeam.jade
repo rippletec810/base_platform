@@ -1,87 +1,59 @@
-h3 团队招聘
-  small Join in Team
-// START panel
-.panel.panel-default
-  .panel-heading
-    | 招聘列表
-  // START table-responsive
+h3 招聘管理
+  small Edit in Recruit
+
+.table-grid.table-grid-desktop(ng-controller='TeamPostController as pag')
+ .col.col-md 
+  .panel-footer
+    .row
+      .col-lg-4
+        button.btn.btn-sm.btn-default(ng-click="pag.delectAllPosts()") 批量删除
+      .col-lg-8.text-right
+        pagination.pagination-sm(ng-if='pag.bigTotalItems',ng-change='pag.pageChanged()', total-items='pag.bigTotalItems', ng-model='pag.bigCurrentPage', max-size='pag.maxSize', boundary-links='true', rotate='false', num-pages='pag.numPages')
   .table-responsive
     table#table-ext-2.table.table-striped.table-bordered.table-hover
       thead
         tr
           th(check-all)
-            .checkbox.c-checkbox(data-toggle="tooltip",data-title="Check All")
+            .checkbox.c-checkbox
               label
-                input(type='checkbox')
+                input(type='checkbox' ng-click='pag.checkAll($event)')
                 span.fa.fa-check
           th 招聘详情
           th 操作
       tbody
-        tr
+        tr(ng-repeat='post in pag.posts')
           td
             .checkbox.c-checkbox
               label
-                input(type='checkbox')
+                input(type='checkbox' ng-model='post.selected')
                 span.fa.fa-check
           td
             .media
-                a.pull-left(href='#')
+                a.pull-left
                   img.media-object.img-responsive.img-circle(src="app/img/user/01.jpg",alt="")
                 .media-body
-                  .pull-right.badge.baed-info 团队负责人
-                  h4.media-heading 招聘PHP高级程序员6名
-                  p 发布团队: holly123
-                  | 精通PHP, 熟悉MVC架构，能够熟练使用PHP+mysql开发网站程序;
+                  div(style='cursor:pointer;' ui-sref='admin.view({mid:{{post.recruit_id}}})')
+                    .pull-right.badge.baed-info {{::add_time|fromNow}}
+                    h4.media-heading(ng-bind="::post.title")
+                    p 发布团队: {{::post.team_name}}
+                    | {{::post.content | removeTag | limitTo:100}}
           td.text-center
             label
-              button.btn.btn-sm.btn-danger(title="删除")删除
-        tr
-          td
-            .checkbox.c-checkbox
-              label
-                input(type='checkbox')
-                span.fa.fa-check
-          td
-            .media
-                a.pull-left(href='#')
-                  img.media-object.img-responsive.img-circle(src="app/img/user/01.jpg",alt="")
-                .media-body
-                  .pull-right.badge.baed-info 普通用户
-                  h4.media-heading 招聘PHP高级程序员6名
-                  p 发布团队:波纹团队
-                  | 熟悉ECSHOP, DISCUZ, WORDPRESS,DEDECMS(或其它类型CMS系统)构架及运用, 有利用ECSHOP, DISCUZ, WORDPRESS,DEDECMS建设网站经验者优先;
-          td.text-center
-            label
-              button.btn.btn-sm.btn-danger(title="删除")删除
-        tr
-          td
-            .checkbox.c-checkbox
-              label
-                input(type='checkbox')
-                span.fa.fa-check
-          td
-            .media
-                a.pull-left(href='#')
-                  img.media-object.img-responsive.img-circle(src="app/img/user/01.jpg",alt="")
-                .media-body
-                  .pull-right.badge.baed-info 二级管理员
-                  h4.media-heading 招聘安卓高级程序员6名
-                  p 发布团队: mariomiles
-                  | 有良好的团队合作意识,耐心、诚恳,有强烈的责任心和积极主动的工作态度;
-          td.text-center
-            label
-              button.btn.btn-sm.btn-danger(title="删除")删除
-  // END table-responsive
-  .panel-footer
-    .row
-      .col-lg-2
-        button.btn.btn-sm.btn-default 批量删除
-      .col-lg-8
-      .col-lg-2.text-right
-        ul.pagination.pagination-sm
-          li.active: a(href='#') 1
-          li: a(href='#') 2
-          li: a(href='#') 3
-          li: a(href='#') »
-// END panel
-// END row
+              button.btn.btn-sm.btn-danger(title="删除" ng-click='pag.delectPost(post.recruit_id)') 删除
+      //- template
+      script(type="text/ng-template", id="confirm")
+        .ngdialog-message.clearfix
+          h3.text-center
+            | 确定删除该招聘文章?
+          
+          button.btn.btn-primary.mr.pull-right(type='button', ng-click='confirm()') 确定
+          button.btn.btn-default.pull-left(type='button', ng-click="closeThisDialog()") 取消
+      script(type="text/ng-template", id="allconfirm")
+        .ngdialog-message.clearfix
+          h3.text-center
+            | 确定删除所有选中的文章?
+          
+          button.btn.btn-primary.mr.pull-right(type='button', ng-click='confirm()') 确定
+          button.btn.btn-default.pull-left(type='button', ng-click="closeThisDialog()") 取消
+
+  

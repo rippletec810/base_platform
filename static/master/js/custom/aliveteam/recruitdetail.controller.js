@@ -21,7 +21,6 @@
         recruit_id: id
       }, function(data) {
         vm.recruit = data.data;
-        console.log(data);
       })
     }
     $scope.$on('$stateChangeSuccess', function(event, toState, toParams) {

@@ -28,8 +28,9 @@ h3 团队审核
         // form
         form.form-buttons.form-inline(editable-form='', name='rowform', onbeforesave='table.saveUser($data, team.id)', ng-show='rowform.$visible', shown='table.inserted == team')
         .buttons(ng-show='!rowform.$visible')
-          button.btn.btn-sm.btn-info(title="同意" ng-click='passApply()') 同意
-          button.btn.btn-sm.btn-danger(title="否决" ng-click='rejectApply()') 否决
+          button.btn.btn-sm.btn-default(ng-click='getExcel(team.application_id)') 导出EXCEL
+          button.btn.btn-sm.btn-info(title="同意" ng-click='passApply(team.application_id)') 同意
+          button.btn.btn-sm.btn-danger(title="否决" ng-click='rejectApply(team.application_id)') 否决
   p.text-center(ng-show='!table.teams||table.teams.length<1')
             |暂无任何数据
   script(type="text/ng-template", id="ApplyDetail")

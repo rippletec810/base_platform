@@ -55,27 +55,30 @@ h3 申请中心
                   label.col-md-7 
                     .col-md-7 开始使用时间
                   .col-md-12
-                    .col-md-7
+                    .col-md-7(style='margin-top: 31px;')
                       p.input-group
-                        input.form-control(type='text', datepicker-popup='{{format}}', ng-model='apply.starttime', is-open='startopened', max-date="'2017-06-22'", datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
+                        input.form-control(type='text', datepicker-popup='{{format}}', ng-model='apply.starttime', is-open='apply.startopened', max-date="'2017-06-22'", datepicker-options='dateOptions',min-date='minDate', date-disabled='startdisabled(date, mode)', ng-required='true', close-text='Close')
                         span.input-group-btn
                           button.btn.btn-default(type='button', ng-click='startopen($event)')
                             em.icon-calendar
                     .col-md-5
-                      input.form-control(type='text', masked="",ng-model='apply.startMinue' data-inputmask="'mask': '99:99'", placeholder="请输入时间") 
+                      timepicker(name="startMinue", required='', ng-model='apply.startMinue', ng-change='changed()', hour-step='apply.hstep', minute-step='apply.mstep', show-meridian='ismeridian')
+                      span.text-danger(ng-show="form.validateInput('startMinue', 'required')") 请输入时间
+                      //input.form-control(type='text', masked="",ng-model='apply.startMinue' data-inputmask="'mask': '99:99'", placeholder="请输入时间") 
               .col-md-6
                 .form-group
                   label.col-md-7 
                     .col-md-7 停止使用时间
                   .col-md-12
-                    .col-md-7
+                    .col-md-7(style='margin-top: 31px;')
                       p.input-group
-                        input.form-control(type='text', datepicker-popup='{{format}}', ng-model='apply.endtime', is-open='endopened', max-date="'2017-06-22'", datepicker-options='dateOptions', date-disabled='disabled(date, mode)', ng-required='true', close-text='Close')
+                        input.form-control(type='text', datepicker-popup='{{format}}', ng-model='apply.endtime', is-open='apply.endopened',min-date="apply.minDate", max-date="'2017-06-22'", datepicker-options='dateOptions',  ng-required='true', close-text='Close')
                         span.input-group-btn
                           button.btn.btn-default(type='button', ng-click='endopen($event)')
                             em.icon-calendar
                     .col-md-5
-                      input.form-control(type='text', masked="",ng-model='apply.endMinue' data-inputmask="'mask': '99:99'", placeholder="请输入时间") 
+                      timepicker(name="endMinue", required='', ng-model='apply.endMinue', ng-change='changed()', hour-step='apply.hstep', minute-step='apply.mstep', show-meridian='ismeridian')
+                      span.text-danger(ng-show="form.validateInput('endMinue', 'required')") 请输入时间
               // END row 
           ul.pager
             li.previous

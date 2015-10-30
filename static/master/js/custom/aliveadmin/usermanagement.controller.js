@@ -49,25 +49,25 @@
             if(user.school_name &&vm.colleges&& vm.colleges.length) {
               var selected = $filter('filter')(vm.colleges, {school_name: user.school_name});
               console.log(selected[0].school_name)
-              return selected.length ? selected[0].school_name : 'Not set';
+              return selected.length ? selected[0].school_name : '暂无';
             } else {
-              return user.school_name || 'Not set';
+              return user.school_name || '暂无';
             }
           };
           vm.showRole = function(user) {
             if(user.type && vm.types.length) {
               var selected = $filter('filter')(vm.types, {id: user.type});
-              return selected.length ? selected[0].name : 'Not set';
+              return selected.length ? selected[0].name : '暂无';
             } else {
-              return APP_PARMAS.TEAMROLENAME[user.type] || 'Not set';
+              return APP_PARMAS.TEAMROLENAME[user.type] || '暂无';
             }
           };
           vm.showMajors = function(user) {
             if(user.major_name && vm.majors&&vm.majors.length) {
               var selected = $filter('filter')(vm.majors, {major_name: user.major_name});
-              return selected.length ? selected[0].major_name : 'Not set';
+              return selected.length ? selected[0].major_name : '暂无';
             } else {
-              return user.major_name || 'Not set';
+              return user.major_name || '暂无';
             }
           };
 

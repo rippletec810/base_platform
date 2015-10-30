@@ -10,6 +10,7 @@
     .module('app.tables')
     .controller('teamworkerController', teamworkerController)
     .filter('typeFormat', typeFormat)
+
   typeFormat.$inject = ['APP_PARMAS'];
 
   function typeFormat(APP_PARMAS) {
@@ -17,15 +18,18 @@
       return APP_PARMAS.TEAMROLENAME[input] || '';
     }
   }
-  teamworkerController.$inject = ['$scope', '$timeout', '$filter', '$http', 'editableOptions', 'editableThemes', '$q', 'schoolResourceApi', 'teamResourceApi', 'userResourceApi', 'APP_PARMAS'];
+  teamworkerController.$inject = ['$scope', '$timeout','ngDialog', '$filter', '$http', 'editableOptions', 'editableThemes', '$q', 'schoolResourceApi', 'teamResourceApi', 'userResourceApi', 'APP_PARMAS'];
 
-  function teamworkerController($scope, $timeout, $filter, $http, editableOptions, editableThemes, $q, schoolResourceApi, teamResourceAp, userResourceApi, APP_PARMAS) {
+  function teamworkerController($scope, $timeout,ngDialog, $filter, $http, editableOptions, editableThemes, $q, schoolResourceApi, teamResourceAp, userResourceApi, APP_PARMAS) {
     var vm = this;
     vm.users = [];
-    userResourceApi.TeamWorkerQuery(function(data) {
-      vm.users = data.data;
-    })
 
+    function getList() {
+      userResourceApi.TeamWorkerQuery(function(data) {
+        vm.users = data.data;
+      })
+    }
+    getList()
     vm.types = [{
       id: 1,
       name: '次要负责人'
@@ -38,9 +42,9 @@
         var selected = $filter('filter')(vm.types, {
           id: user.type
         });
-        return selected.length ? selected[0].name : 'Not set';
+        return selected.length ? selected[0].name : '暂无';
       } else {
-        return APP_PARMAS.TEAMROLENAME[user.type] || 'Not set';
+        return APP_PARMAS.TEAMROLENAME[user.type] || '暂无';
       }
     };
 
@@ -54,23 +58,35 @@
         return '请选择';
       }
     }
+    vm.saveUser = function(data, type, id) {
+        if (data.type > type)
+          schoolResourceApi.DegradeTeamer({
+            user_id: id
+          }, function(data) {
+            getList()
+          })
+        else if (data.type < type)
+          schoolResourceApi.UpgradeTeamer({
+            user_id: id
+          }, function(data) {
+            getList()
+          })
+        else
+          return;
+      }
+      // remove user
+    vm.removeUser = function(index, id) {
+      ngDialog.openConfirm({
+        template: 'confirm',
+        className: 'ngdialog-theme-default'
+      }).then(function(value) {
+        schoolResourceApi.DeleteTeamer({
+          user_id: id
+        }, function() {
+          getList()
+        });
 
-    // remove user
-    vm.removeUser = function(index) {
-      vm.users.splice(index, 1);
-    };
-
-    // add user
-    vm.addUser = function() {
-      vm.inserted = {
-        nickname: '',
-        name: '',
-        school_name: '',
-        major_name: '',
-        phone: '',
-        password: APP_PARMAS.DefaultPassword
-      };
-      vm.users.push(vm.inserted);
+      }, function(reason) {});
     };
 
 

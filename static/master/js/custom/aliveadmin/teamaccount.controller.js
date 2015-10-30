@@ -27,6 +27,73 @@
               dialog.close();
             }, 2000);
     };
+    $scope.DecreaseAllMoney = function() {
+      ngDialog.openConfirm({
+          template: 'AllDecrease',
+          className: 'ngdialog-theme-default',
+          controller: ['$scope',function($scope){
+            $scope.Decrease={
+              money:'',
+              reason:''
+            }
+          }]
+        })
+        .then(function(value) {
+          var info='',title='',ids=[];
+          for(var i in vm.teams){
+            ids.push(vm.teams[i].team_id)
+          }
+          ids.join(',');
+          ids='['+ids+']';
+          if(value.money!=''&&value.reason!='')
+            teamResourceApi.DecreaseAllMoney({team_ids:ids,amount:value.money,reason:value.reason}).$promise.then(function(data){
+              switch(data.status){
+                case 200:title='操作成功';info='批量扣钱成功';break;
+                case 464:title='操作失败';info='操作失败';break;
+                case 112:title='操作失败';info='参数错误';break;
+                default:title='操作失败';info='参数错误';break;
+              }
+              $scope.openTimed(title,info)
+              activate();
+            })
+        }, function(value) {
+          console.log('rejected:' + value);
+
+        });
+    };
+    $scope.IncreaseAllMoney = function() {
+      ngDialog.openConfirm({
+          template: 'AllIncrease',
+          className: 'ngdialog-theme-default',
+          controller: ['$scope',function($scope){
+            $scope.Increase={
+              money:'',
+              reason:''
+            }
+          }]
+        })
+        .then(function(value) {
+          var info='',title='',ids=[];
+          for(var i in vm.teams){
+            ids.push(vm.teams[i].team_id)
+          }
+          ids.join(',');
+          ids='['+ids+']';
+          if(value.money!=''&&value.reason!='')
+            teamResourceApi.IncreaseAllMoney({team_ids:ids,amount:value.money,reason:value.reason}).$promise.then(function(data){
+              switch(data.status){
+                case 200:title='操作成功';info='批量加钱成功';break;
+                case 464:title='操作失败';info='操作失败';break;
+                case 112:title='操作失败';info='参数错误';break;
+                default:title='操作失败';info='参数错误';break;
+              }
+              $scope.openTimed(title,info)
+              activate();
+            })
+        }, function(value) {
+          console.log('rejected:' + value);
+        });
+    };
     $scope.DecreaseMoney = function(id) {
       ngDialog.openConfirm({
           template: 'Decrease',
@@ -47,7 +114,7 @@
                 case 200:title='操作成功';info='扣钱成功';break;
                 case 464:title='操作失败';info='该团队不存在';break;
                 case 112:title='操作失败';info='参数错误';break;
-                default:break;
+                default:title='操作失败';info='参数错误';break;
               }
               $scope.openTimed(title,info)
               activate();
@@ -77,7 +144,7 @@
                 case 200:title='操作成功';info='加钱成功';break;
                 case 464:title='操作失败';info='该团队不存在';break;
                 case 112:title='操作失败';info='参数错误';break;
-                default:break;
+                default:title='操作失败';info='参数错误';break;
               }
               $scope.openTimed(title,info)
               activate();

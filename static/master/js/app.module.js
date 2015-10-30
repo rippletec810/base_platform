@@ -29,7 +29,6 @@
             'app.icons',
             'app.notify',
             'app.bootstrapui',
-            'app.elements',
             'app.panels',
             'app.forms',
             'app.pages',

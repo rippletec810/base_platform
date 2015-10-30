@@ -14,11 +14,11 @@
             vm.myCroppedImage = '';
             vm.myImage='';
             vm.imgcropType    = 'square';
-            // schoolResourceApi.IntroduceContentQuery(function(data){
-            //   $timeout(function(){vm.wysiwygContent=data?data.data.content:'';console.log(vm.wysiwygContent)},0,true)
-            // })
+            schoolResourceApi.IntroduceContentQuery(function(data){
+              $timeout(function(){vm.wysiwygContent=data?data.data.content:'';},0,true)
+            })
             schoolResourceApi.IntroduceLogoQuery(function(data){
-              $timeout(function(){vm.myImage= data?DataWrap(data.data.content):'';console.log(vm.myImage)},0,true)             
+              $timeout(function(){vm.myCroppedImage= data?DataWrap(data.data.content):'';console.log(vm.myImage)},0,true)             
             })
           };
           function DataWrap(str){

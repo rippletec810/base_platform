@@ -50,6 +50,12 @@ function applyActivity()
         dataType: 'json',
         type: 'POST',
         success: function(data){
+
+            if(data.status == 411)
+            {
+                window.location = "load.html";
+                return;
+            }
             if(data.status != 200)
             {
                 $('#apply').attr('disabled', false);

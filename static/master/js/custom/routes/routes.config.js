@@ -108,6 +108,14 @@
         },
         templateUrl: helper.basepath('common/recover.html')
       })
+      .state('page.changepassword', {
+        url: '/changepassword',
+        title: '修改密码',
+        data: {
+          authorizedRoles: [USER_ROLES.all]
+        },
+        templateUrl: helper.basepath('common/changepassword.html')
+      })
       // --基地管理员--
       // ------------------------
       .state('admin', {
@@ -166,7 +174,26 @@
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
-        templateUrl: helper.basepath('custom/jointeam.html')
+        templateUrl: helper.basepath('custom/jointeam.html'),
+        resolve: helper.resolveFor('ngDialog')
+      })
+      .state('admin.view', {
+        url: '/recruit/{mid:[0-9]{1,4}}',
+        title: '预览文章',
+        templateUrl: helper.basepath('custom/adminpost-view.html'),
+        data: {
+          authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.secondadmin]
+        },
+        resolve: helper.resolveFor('ngWig', 'moment')
+      })
+      .state('admin.postsview', {
+        url: '/posts/{id:[0-9]{1,4}}',
+        title: '预览帖子',
+        templateUrl: helper.basepath('common/posts-view.html'),
+        data: {
+          authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.secondadmin]
+        },
+        resolve: helper.resolveFor('ngWig', 'moment')
       })
       .state('admin.baseIntroduce', {
         url: '/baseintroduce',
@@ -233,6 +260,8 @@
       .state('admin.posts', {
         url: '/posts',
         title: '帖子管理',
+        controller: 'BasePostController',
+        controllerAs: 'pag',
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
@@ -247,18 +276,33 @@
         templateUrl: helper.basepath('custom/basechangepassword.html'),
       })
       .state('admin.teamorders', {
-        url: '/teamorders',
+        url: '/teamorders/:id',
         title: '操作记录',
+        controller: 'BaseTeamOrderController',
+        controllerAs: 'table',
         templateUrl: helper.basepath('custom/team-orders.html'),
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
         resolve: helper.resolveFor('datatables')
       })
+      .state('admin.nestable', {
+        url: '/nestable',
+        title: 'Nestable',
+        templateUrl: helper.basepath('custom/nestable.html'),
+        controller:'NestableController',
+        controllerAs:'nest',
+        data: {
+          authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
+        },
+        resolve: helper.resolveFor('ng-nestable','ngDialog')
+      })
       .state('admin.teamrecord', {
         url: '/teamrecord',
         title: '团队流水',
         templateUrl: helper.basepath('custom/teamrecord.html'),
+        controller: 'BaseTeamRecordController',
+        controllerAs: 'table',
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
@@ -301,7 +345,7 @@
         data: {
           authorizedRoles: [USER_ROLES.teamleader]
         },
-        resolve: helper.resolveFor('xeditable')
+        resolve: helper.resolveFor('xeditable', 'ngDialog')
       })
       .state('team.suportlist', {
         url: '/suportlist',
@@ -310,7 +354,7 @@
         data: {
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
-        resolve: helper.resolveFor('xeditable','moment', 'spinkit')
+        resolve: helper.resolveFor('xeditable', 'moment', 'spinkit')
       })
       .state('team.suportcenter', {
         url: '/suportcenter',
@@ -319,7 +363,7 @@
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
         templateUrl: helper.basepath('custom/teamroomapply.html'),
-        resolve: helper.resolveFor('parsley','inputmask','ngDialog')
+        resolve: helper.resolveFor('parsley', 'inputmask', 'ngDialog')
       })
       .state('team.team', {
         url: '/m/teamworker',
@@ -346,7 +390,7 @@
         data: {
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
-        resolve: helper.resolveFor('ngWig', 'ngImgCrop', 'filestyle')
+        resolve: helper.resolveFor('ngWig', 'ngImgCrop', 'filestyle', 'ngDialog')
       })
       .state('team.recruit', {
         url: '/recruit',
@@ -365,8 +409,9 @@
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
         templateUrl: helper.basepath('custom/teamrecordlist.html'),
-        controller: 'TodoController',
-        controllerAs: 'todo'
+        controller: 'TeamRecordController',
+        controllerAs: 'todo',
+        resolve: helper.resolveFor('moment', 'ngDialog')
       })
       .state('team.compost', {
         url: '/compost',
@@ -384,17 +429,19 @@
         data: {
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
-        resolve: helper.resolveFor('ngWig','moment')
+        resolve: helper.resolveFor('ngWig', 'moment')
 
       })
       .state('team.orders', {
         url: '/orders',
-        title: '消费记录',
+        title: '团队补贴',
+        controller: 'TeamOrderController',
+        controllerAs: 'table',
         templateUrl: helper.basepath('custom/teamorder.html'),
         data: {
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
-        resolve: helper.resolveFor('datatables')
+        resolve: helper.resolveFor('datatables', 'moment')
       })
       .state('team.changepassword', {
         url: '/password',
@@ -433,7 +480,6 @@
           authorizedRoles: [USER_ROLES.visitor]
         },
         resolve: helper.resolveFor('taginput', 'inputmask', 'localytics.directives', 'filestyle', 'textAngular', 'angularFileUpload', 'ngDialog')
-
       })
       // 
       // CUSTOM RESOLVES
