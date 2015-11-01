@@ -74,24 +74,24 @@
     }
 
     function getRecordListWithTime(id, start, end) {
-      teamResourceApi.FlowListQuery({
+      schoolResourceApi.AdminRecordQuery({
         team_id: id,
         start_date: start,
         end_date: end,
         page_num: 1,
         page_size: 1000
       }).$promise.then(function(data) {
-        vm.records = data.data.flow_list;
+        vm.records = data.data.record_list;
       })
     }
 
     function getRecordListWithOutTime(id) {
-      teamResourceApi.FlowListQuery({
+      schoolResourceApi.AdminRecordQuery({
         team_id: id,
         page_num: 1,
         page_size: 1000
       }).$promise.then(function(data) {
-        vm.records = data.data.flow_list;
+        vm.records = data.data.record_list;
       })
     }
     vm.clear = function() {

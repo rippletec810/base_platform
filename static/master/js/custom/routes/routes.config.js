@@ -108,14 +108,6 @@
         },
         templateUrl: helper.basepath('common/recover.html')
       })
-      .state('page.changepassword', {
-        url: '/changepassword',
-        title: '修改密码',
-        data: {
-          authorizedRoles: [USER_ROLES.all]
-        },
-        templateUrl: helper.basepath('common/changepassword.html')
-      })
       // --基地管理员--
       // ------------------------
       .state('admin', {
@@ -202,7 +194,7 @@
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
-        resolve: helper.resolveFor('ngDialog', 'ngWig', 'ngImgCrop', 'filestyle')
+        resolve: helper.resolveFor('ngDialog','ueditor', 'ngImgCrop', 'filestyle')
       })
       .state('admin.baseNotice', {
         url: '/baseNotice',
@@ -211,7 +203,7 @@
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
-        resolve: helper.resolveFor('taginput', 'inputmask', 'localytics.directives', 'filestyle', 'textAngular')
+        resolve: helper.resolveFor('ueditor','ngDialog')
       })
       .state('admin.baseActivity', {
         url: '/baseActivity',
@@ -220,7 +212,7 @@
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
-        resolve: helper.resolveFor('taginput', 'inputmask', 'localytics.directives', 'filestyle', 'textAngular')
+        resolve: helper.resolveFor('ueditor','ngDialog')
       })
       .state('admin.base-post', {
         url: '/基地活动详情',
@@ -237,7 +229,7 @@
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
-        resolve: helper.resolveFor('ui.select', 'textAngular')
+        resolve: helper.resolveFor('ueditor','ngDialog')
       })
       .state('admin.baseGame', {
         url: '/game',
@@ -246,7 +238,7 @@
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
-        resolve: helper.resolveFor('taginput', 'inputmask', 'localytics.directives', 'filestyle', 'textAngular')
+        resolve: helper.resolveFor('ueditor','ngDialog')
       })
       .state('admin.modules', {
         url: '/modules',
@@ -290,12 +282,10 @@
         url: '/nestable',
         title: 'Nestable',
         templateUrl: helper.basepath('custom/nestable.html'),
-        controller:'NestableController',
-        controllerAs:'nest',
         data: {
           authorizedRoles: [USER_ROLES.baseadmin, USER_ROLES.admin]
         },
-        resolve: helper.resolveFor('ng-nestable','ngDialog')
+        resolve: helper.resolveFor('ng-nestable')
       })
       .state('admin.teamrecord', {
         url: '/teamrecord',
@@ -390,7 +380,7 @@
         data: {
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
-        resolve: helper.resolveFor('ngWig', 'ngImgCrop', 'filestyle', 'ngDialog')
+        resolve: helper.resolveFor('ueditor', 'ngImgCrop', 'filestyle', 'ngDialog')
       })
       .state('team.recruit', {
         url: '/recruit',
@@ -420,7 +410,7 @@
           authorizedRoles: [USER_ROLES.teamleader, USER_ROLES.teamworker]
         },
         templateUrl: helper.basepath('custom/teampost-compost.html'),
-        resolve: helper.resolveFor('ngWig')
+        resolve: helper.resolveFor('ueditor')
       })
       .state('team.view', {
         url: '/recruit/{mid:[0-9]{1,4}}',
@@ -479,7 +469,7 @@
         data: {
           authorizedRoles: [USER_ROLES.visitor]
         },
-        resolve: helper.resolveFor('taginput', 'inputmask', 'localytics.directives', 'filestyle', 'textAngular', 'angularFileUpload', 'ngDialog')
+        resolve: helper.resolveFor('ueditor','angularFileUpload', 'ngDialog')
       })
       // 
       // CUSTOM RESOLVES

@@ -4,16 +4,16 @@
 <div ng-controller="usermanagementController as table" class="container-fluid">
    <form role="form" class="form-inline">
       <div class="row panel-heading form-horizontal">
-         <div class="form-group pull-right list-inline panel-heading col-md-3">
+         <div class="form-group pull-right list-inline panel-heading">
             <label class="col-sm-4 control-label">团队</label>
             <div class="col-sm-8">
-               <select name="account" ng-change="table.loadUserList()" ng-options="team.team_id as team.team_name for team in table.teams" ng-model="selectTeam" class="pull-right form-control"></select>
+               <select name="account" ng-change="table.loadUserList()" ng-options="team.team_id as team.team_name for team in table.teams" ng-model="selectTeam" class="form-control"></select>
             </div>
          </div>
-         <div class="form-group pull-right list-inline panel-heading col-md-3">
+         <div class="form-group pull-right list-inline panel-heading">
             <label class="col-sm-4 control-label">职位</label>
             <div class="col-sm-8">
-               <select name="account" ng-change="table.loadUserList()" ng-options="type.id as type.name for type in table.types" ng-model="selectType" class="pull-right form-control"></select>
+               <select name="account" ng-change="table.loadUserList()" ng-options="type.id as type.name for type in table.types" ng-model="selectType" class="form-control"></select>
             </div>
          </div>
       </div>

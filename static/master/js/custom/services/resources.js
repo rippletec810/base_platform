@@ -30,8 +30,6 @@
 				TeamRecordExport:{method:'POST',params:{user:'account',param:'record',operate:'excel',others:'export'}},
 				//--帖子列表--
 				PostListQuery:{method:'POST',params:{user:'community',param:'post',operate:'list'}},
-				//--编辑记账本收支类型列表--
-				PaymentEdit:{method:'POST',params:{user:'payment',param:'type',operate:'edit'}},
 				//--获取版块列表（管理员）-- 
 		      	ModuleQuery:{method:'POST',params:{user:'community',param:'section',operate:'list'}},
 		      	//--获取团队审核申请excel--
@@ -121,8 +119,6 @@
 			return $resource('/:user/:param/:operate/:others', {}, {
 				//--申请物资列表--
 				ApplyThingList:{method:'POST',params:{user:'room',param:'apply',operate:'list'}},
-				//--获取记账本收支类型列表--
-				PaymentList:{method:'POST',params:{user:'payment',param:'type',operate:'list'}},
 				//--获取回复列表--
 				RepplyQuery:{method:'POST',params:{user:'community',param:'reply',operate:'list'}},
 				//--发布回复--
@@ -183,10 +179,6 @@
 		      	IntroduceLogoQuery: {method:'GET', params:{user:'base',param:'logo',operate:'get'}},
 		      	//--获取验证码--
 		      	SendCode: {method:'POST', params:{user:'user',param:'verify',operate:'send'}},
-		      	//--用户利用验证码来修改密码--
-		      	ChangePasswordUseCode: {method:'POST', params:{user:'user',param:'password',operate:'verify'}},
-		      	//--忘记密码--
-		      	ForgetCode: {method:'POST', params:{user:'user',param:'password',operate:'forget'}},
 		      	//--用户注册--
 		      	Register: {method:'POST', params:{user:'user',param:'register'}},
 		      	//--申请新团队--

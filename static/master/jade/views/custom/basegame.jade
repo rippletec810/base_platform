@@ -38,9 +38,7 @@ h3 比赛管理
               input.mb-lg.form-control.input-lg(type="text", name="title",required="" ng-maxlength="20" ng-model='art.game.title', placeholder="标题")
               span.mb-lg.text-danger(ng-show="art.validateInput('title', 'required')") 请填写内容
               span.text-danger(ng-show="form.validateInput('length', 'maxlength')") 字数不能超过20
-              // Wysiswyg editor
-              .btn-group-small(text-angular='', ng-model='art.game.content',required="", name='content')
-              span.text-danger(ng-show="art.validateInput('content', 'required')") 请填写内容
+              ueditor(config="art.editorConfig" ng-model="art.game.content" required="")
               br
               .pull-right
                   button.btn.btn-primary.m-r-10.m-t-10(type="submit")

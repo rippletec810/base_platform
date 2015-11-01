@@ -13,8 +13,7 @@ h3 申请新团队
               span.mb-lg.text-danger(ng-show="apply.validateInput('title', 'required')") 请填写内容
               span.text-danger(ng-show="form.validateInput('length', 'maxlength')") 字数不能超过10
               // Wysiswyg editor
-              .btn-group-small(text-angular='', ng-model='apply.content',required="", name='content')
-              span.text-danger(ng-show="apply.validateInput('content', 'required')") 请填写内容
+              ueditor(config="apply.editorConfig" ng-model="apply.content" required="")
               br
               .center-block
                   button.btn.btn-primary.m-r-10.m-t-10.center-block(type="submit" ng-class="{'disabled':!apply.content||!apply.title}")

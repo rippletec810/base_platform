@@ -22,9 +22,9 @@
       return input;
     }
   }
-  BasePostController.$inject = ['$timeout', '$state','$q', 'schoolResourceApi', 'adminResourceApi', 'paginationConfig', 'ngDialog']
+  BasePostController.$inject = ['$timeout', '$state', 'schoolResourceApi', 'adminResourceApi', 'paginationConfig', 'ngDialog']
 
-  function BasePostController($timeout, $state,$q, schoolResourceApi, adminResourceApi, paginationConfig, ngDialog) {
+  function BasePostController($timeout, $state, schoolResourceApi, adminResourceApi, paginationConfig, ngDialog) {
     var vm = this;
     vm.maxSize = 1; //最大页码数
     vm.bigCurrentPage = 1;
@@ -46,7 +46,7 @@
         promiseList = [];
       for (var i in vm.posts) {
         if (vm.posts[i].selected)
-          ids.push(vm.posts[i].post_id)
+          ids.push(vm.posts[i].recruit_id)
       };
       if (ids.length > 0) {
         ngDialog.openConfirm({
@@ -55,7 +55,7 @@
         }).then(function(value) {
           for (var i = 0, len = ids.length; i < len; i++)
             promiseList.push(schoolResourceApi.PostDelete({
-              post_id: ids[i]
+              recruit_id: ids[i]
             }).$promise);
           $q.all(promiseList).then(function(){
             vm.openTimed('<h3 class="text-center text-success">删除成功</h3>');
@@ -80,7 +80,7 @@
         className: 'ngdialog-theme-default'
       }).then(function(value) {
         schoolResourceApi.PostDelete({
-          post_id: id
+          recruit_id: id
         }, function(data) {
           console.log(data);
           vm.openTimed('<h3 class="text-center text-success">删除成功</h3>');

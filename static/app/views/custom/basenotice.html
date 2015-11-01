@@ -49,8 +49,7 @@
                   <span ng-show="art.validateInput('title', 'required')" class="mb-lg text-danger">请填写内容</span>
                   <span ng-show="form.validateInput('length', 'maxlength')" class="text-danger">字数不能超过20</span>
                   <!-- Wysiswyg editor-->
-                  <div text-angular="" ng-model="art.notice.content" required="" name="content" class="btn-group-small"></div>
-                  <span ng-show="art.validateInput('content', 'required')" class="text-danger">请填写内容</span>
+                  <ueditor config="art.editorConfig" ng-model="art.notice.content" required=""></ueditor>
                   <br/>
                   <div class="pull-right">
                      <button type="submit" class="btn btn-primary m-r-10 m-t-10">

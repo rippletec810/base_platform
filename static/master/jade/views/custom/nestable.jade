@@ -1,11 +1,11 @@
 h3 收支类型管理
   .col-sm-2.pull-right
-      select(ng-model='nest.type' ng-change='nest.typeChange()').form-control
-        option(value='in') 收入
-        option(value='out') 支出
+      select.form-control
+        option 收入
+        option 支出
   small Payment Type Management
 
-.container-fluid
+.container-fluid(ng-controller="NestableController as nest")
   .row
     .col-md-1
     .col-md-4
@@ -20,20 +20,19 @@ h3 收支类型管理
       .panel.panel-default.well
         div(ng-nestable='', ng-model='nest.items')
           div
-            | {{$item}}
+            | {{$item.text}}
     .col-md-2
       div
         p.text-left 请拖动编辑级联列表
         small.text-muted 拖动右边的未分配级联项到左侧级级联菜单
-      button.btn.btn-default.block-center(ng-click='nest.saveChange()') 保存更改
     .col-md-4
       .panel.panel-default.well
         .show-handlers(ng-nestable='', ng-model='nest.unuseitems')
           div
-            | {{$item}}
-        form(ng-submit='nest.addNest(nest.item)').mb-xl
+            | {{$item.text}}
+        form(ng-submit='todo.addTodo(todo)').mb-xl
           .form-group
-            input.form-control(ng-trim="true",name='item', type='text', ng-model='nest.item', placeholder='添加级联项', required)
-          button.btn.btn-primary.btn-block(type='submit') 添加
+            input.form-control(ng-trim="true",name='amount', type='text', ng-model='todo.todo.amount', placeholder='添加级联项', required)
+        button.btn.btn-primary.btn-block(type='submit') 添加
     .col-md-1
 

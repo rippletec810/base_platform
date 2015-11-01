@@ -64,10 +64,10 @@
       </thead>
       <tbody>
          <tr ng-repeat="record in table.records">
-            <td>{{::record.flow_id}}</td>
+            <td>{{::record.payment_id}}</td>
             <td>{{::record.add_time|NowTime}}</td>
-            <td>{{::record.payment_type_name | TypeFilter}}</td>
-            <td>{{::record.description}}</td>
+            <td>{{::record | TypeFilter}}</td>
+            <td>{{::record.reason}}</td>
             <td>{{::record.amount| MoneyFilter}}</td>
          </tr>
       </tbody>

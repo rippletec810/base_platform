@@ -15,20 +15,13 @@ h3 记账本
           label.col-sm-3.control-label 类型
           .col-sm-9
             label.radio-inline.c-radio
-              input#inlineradio1(type='radio' ng-model='todo.todo.type' value='in' ng-click='todo.getTypeList()')
+              input#inlineradio1(type='radio' ng-model='todo.todo.type' value='+')
               span.fa.fa-circle
               |  收入
             label.radio-inline.c-radio
-              input#inlineradio2(type='radio' ng-model='todo.todo.type' value='out' ng-click='todo.getTypeList()')
+              input#inlineradio2(type='radio' ng-model='todo.todo.type' value='-')
               span.fa.fa-circle
               |  支出
-        .form-group.clearfix
-          .col-md-6(style='padding:0;padding-right:10px;')
-            select.form-control(ng-model='todo.firstType' ng-change='todo.getSecondList()')
-              option(ng-repeat='item in todo.typeItems' ng-value='item.item') {{item.item}}
-          .col-md-6(style='padding:0;padding-right:10px;')
-            select.form-control(ng-model='todo.secondType')
-              option(ng-repeat='item in todo.secondTypeItems' ng-value='item.item') {{item.item}}
         .form-group
           textarea.form-control(ng-trim="true", ng-model='todo.todo.description', placeholder='账单描述', rows="8")
         
@@ -48,12 +41,11 @@ h3 记账本
                 h4.popover-title {{::item.amount}}
                 .arrow
                 .popover-content
-                  abbr(title='{{::item.payment_type_name}}') {{::item.payment_type_name}}
-                  p(style='padding-top:5px;') {{::item.description}}
+                  p {{::item.description}}
         li.timeline-end(ng-if="$last")
           a(ng-click='todo.gotoEdit()').timeline-badge
             em.fa.fa-plus
-    .text-center(ng-if="todo.isEmpty(todo.items)")
+    .text-center(ng-if="todo.items!='{}'")
       p 暂无流水单 
       small.text-muted 请在右侧添加新的流水单
    //- template

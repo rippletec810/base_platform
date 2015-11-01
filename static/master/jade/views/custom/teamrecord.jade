@@ -41,8 +41,8 @@ h3 团队流水
           strong 总支出(元)
     tbody
       tr(ng-repeat='record in table.records')
-        td {{::record.flow_id}}
+        td {{::record.payment_id}}
         td {{::record.add_time|NowTime}}
-        td {{::record.payment_type_name | TypeFilter}}
-        td {{::record.description}}
+        td {{::record | TypeFilter}}
+        td {{::record.reason}}
         td {{::record.amount| MoneyFilter}}

@@ -41,19 +41,11 @@
             </div>
          </div>
          <fieldset>
-            <div class="form-group">
-               <label class="col-sm-2 control-label">基地的一些介绍,内容控制在300字以上~</label>
-               <div class="col-sm-10">
-                  <script type="text/ng-template" id="ng-wig/views/ng-wig.html">
-                     <div class="ng-wig"><div class="btn-group btn-group-sm wd-wide"><button type="button" title="Header" ng-click="execCommand('formatblock', '&lt;h1&gt;')" class="btn btn-sm btn-default"><em class="fa fa-header"></em></button><button type="button" title="Paragraph" ng-click="execCommand('formatblock', '&lt;p&gt;')" class="btn btn-sm btn-default"><em class="fa fa-paragraph"></em></button><button type="button" title="Unordered List" ng-click="execCommand('insertunorderedlist')" class="btn btn-sm btn-default"><em class="fa fa-list-ul"></em></button><button type="button" title="Ordered List" ng-click="execCommand('insertorderedlist')" class="btn btn-sm btn-default"><em class="fa fa-list-ol"></em></button><button type="button" title="Bold" ng-click="execCommand('bold')" class="btn btn-sm btn-default"><em class="fa fa-bold"></em></button><button type="button" title="Italic" ng-click="execCommand('italic')" class="btn btn-sm btn-default"><em class="fa fa-italic"></em></button><button type="button" title="link" ng-click="execCommand('createlink')" class="btn btn-sm btn-default"><em class="fa fa-link"></em></button><button type="button" title="Edit Html" ng-class="{ 'nw-button--active': editMode }" ng-click="toggleEditMode()" class="pull-right btn btn-sm btn-default"><em class="fa fa-pencil"></em></button></div><div class="nw-editor"><textarea ng-show="editMode" ng-model="content" class="nw-editor__src"> </textarea><iframe scrolling="{{ autoexpand ? 'no' : 'yes' }}" frameBorder="0" ng-hide="editMode" ng-model="content" ng-wig-editable="" class="nw-editor__res"></iframe></div></div>
-                  </script>
-                  <textarea ng-wig="form.wysiwygContent"></textarea>
-               </div>
-            </div>
+            <ueditor config="form.editorConfig" ng-model="content" required=""></ueditor>
          </fieldset>
          <fieldset>
             <div class="form-group">
-               <div class="col-sm-4 col-sm-offset-2">
+               <div class="col-sm-2 pull-right">
                   <button type="submit" ng-click="form.reset()" class="btn btn-default">取消</button>
                   <button type="submit" ng-click="form.saveIntroduce()" class="btn btn-primary">保存</button>
                </div>

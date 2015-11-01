@@ -2,25 +2,19 @@
    <div class="panel-body">
       <form ng-controller="RecruitCmpostController as recruit" name="recruit.formValidate" ng-submit="recruit.newRecruit()" novalidate="">
          <div class="input-group form-group">
-            <span class="input-group-addon text-sm">标题:</span>
-            <input type="text" name="title" required="" placeholder="填写标题" ng-model="recruit.post.title" class="form-control" />
+            <span style="background-color:#fff;" class="input-group-addon text-sm">标题:</span>
+            <input type="text" name="title" required="" placeholder="填写标题" ng-model="post.title" class="form-control" />
          </div>
          <span ng-show="recruit.validateInput('title', 'required')" class="form-group show text-danger">请输入标题</span>
          <div class="input-group form-group">
-            <span class="input-group-addon text-sm">招聘人数:</span>
-            <input type="text" name="number" ng-pattern="/^[0-9]+$/" placeholder="填写招聘人数" required="" ng-model="recruit.post.recruit_num" class="form-control" />
+            <span style="background-color:#fff;" class="input-group-addon text-sm">招聘人数:</span>
+            <input type="text" name="number" ng-pattern="/^[0-9]+$/" placeholder="填写招聘人数" required="" ng-model="post.recruit_num" class="form-control" />
          </div>
          <span ng-show="recruit.validateInput('number', 'pattern')" class="form-group show text-danger">请输入正确的招聘人数</span>
          <span ng-show="recruit.validateInput('number', 'required')" class="form-group show text-danger">请输入招聘人数</span>
-         <div class="mb-editor">
-            <!-- END action buttons  -->
-            <script type="text/ng-template" id="ng-wig/views/ng-wig.html">
-               <div class="ng-wig"><div class="btn-group btn-group-sm"><button type="button" title="标题" ng-click="execCommand('formatblock', '&lt;h1&gt;')" class="btn btn-sm btn-default"><em class="fa fa-header"></em></button><button type="button" title="段落" ng-click="execCommand('formatblock', '&lt;p&gt;')" class="btn btn-sm btn-default"><em class="fa fa-paragraph"></em></button><button type="button" title="无序列表" ng-click="execCommand('insertunorderedlist')" class="btn btn-sm btn-default"><em class="fa fa-list-ul"></em></button><button type="button" title="有序列表" ng-click="execCommand('insertorderedlist')" class="btn btn-sm btn-default"><em class="fa fa-list-ol"></em></button><button type="button" title="加粗" ng-click="execCommand('bold')" class="btn btn-sm btn-default"><em class="fa fa-bold"></em></button><button type="button" title="斜体" ng-click="execCommand('italic')" class="btn btn-sm btn-default"><em class="fa fa-italic"></em></button><button type="button" title="链接" ng-click="execCommand('createlink')" class="btn btn-sm btn-default"><em class="fa fa-link"></em></button><button type="button" title="Html编辑器" ng-class="{ 'nw-button--active': editMode }" ng-click="toggleEditMode()" class="btn btn-sm btn-default"><em class="fa fa-pencil"></em></button></div><div class="nw-editor"><textarea ng-show="editMode" ng-model="content" class="nw-editor__src"> </textarea><iframe scrolling="{{ autoexpand ? 'no' : 'yes' }}" frameBorder="0" ng-hide="editMode" ng-model="content" ng-wig-editable="" class="nw-editor__res"></iframe></div></div>
-            </script>
-            <textarea ng-wig="recruit.post.content"></textarea>
-            <br/>
-            <button type="submit" class="btn btn-primary btn-sm mb">发布</button>
-         </div>
+         <ueditor config="recruit.editorConfig" ng-model="post.content"></ueditor>
+         <br/>
+         <button type="submit" class="btn btn-primary btn-sm mb">发布</button>
       </form>
    </div>
 </div>

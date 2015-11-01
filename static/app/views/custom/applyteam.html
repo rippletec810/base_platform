@@ -13,8 +13,7 @@
                   <span ng-show="apply.validateInput('title', 'required')" class="mb-lg text-danger">请填写内容</span>
                   <span ng-show="form.validateInput('length', 'maxlength')" class="text-danger">字数不能超过10</span>
                   <!-- Wysiswyg editor-->
-                  <div text-angular="" ng-model="apply.content" required="" name="content" class="btn-group-small"></div>
-                  <span ng-show="apply.validateInput('content', 'required')" class="text-danger">请填写内容</span>
+                  <ueditor config="apply.editorConfig" ng-model="apply.content" required=""></ueditor>
                   <br/>
                   <div class="center-block">
                      <button type="submit" ng-class="{'disabled':!apply.content||!apply.title}" class="btn btn-primary m-r-10 m-t-10 center-block">

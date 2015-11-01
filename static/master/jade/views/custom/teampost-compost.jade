@@ -3,39 +3,15 @@
       
     form(ng-controller="RecruitCmpostController as recruit", name='recruit.formValidate' ng-submit='recruit.newRecruit()' novalidate="")
       .input-group.form-group
-        span.input-group-addon.text-sm 标题:
-        input.form-control(type='text' name='title' required='' placeholder='填写标题' ng-model='recruit.post.title')
+        span.input-group-addon.text-sm(style="background-color:#fff;") 标题:
+        input.form-control(type='text' name='title' required='' placeholder='填写标题' ng-model='post.title')
       span.form-group.show.text-danger(ng-show="recruit.validateInput('title', 'required')") 请输入标题
       .input-group.form-group
-        span.input-group-addon.text-sm 招聘人数:
-        input.form-control(type='text', name='number',ng-pattern="/^[0-9]+$/" placeholder='填写招聘人数' required='', ng-model="recruit.post.recruit_num")
+        span.input-group-addon.text-sm(style="background-color:#fff;") 招聘人数:
+        input.form-control(type='text', name='number',ng-pattern="/^[0-9]+$/" placeholder='填写招聘人数' required='', ng-model="post.recruit_num")
       span.form-group.show.text-danger(ng-show="recruit.validateInput('number', 'pattern')") 请输入正确的招聘人数
       span.form-group.show.text-danger(ng-show="recruit.validateInput('number', 'required')") 请输入招聘人数
-      .mb-editor
-        // END action buttons  
-        script(type='text/ng-template', id="ng-wig/views/ng-wig.html")
-          .ng-wig
-            .btn-group.btn-group-sm
-              button.btn.btn-sm.btn-default(type='button', title='标题', ng-click="execCommand('formatblock', '<h1>')")
-                em.fa.fa-header
-              button.btn.btn-sm.btn-default(type='button', title='段落', ng-click="execCommand('formatblock', '<p>')")
-                em.fa.fa-paragraph
-              button.btn.btn-sm.btn-default(type='button', title='无序列表', ng-click="execCommand('insertunorderedlist')")
-                em.fa.fa-list-ul
-              button.btn.btn-sm.btn-default(type='button', title='有序列表', ng-click="execCommand('insertorderedlist')")
-                em.fa.fa-list-ol
-              button.btn.btn-sm.btn-default(type='button', title='加粗', ng-click="execCommand('bold')")
-                em.fa.fa-bold
-              button.btn.btn-sm.btn-default(type='button', title='斜体', ng-click="execCommand('italic')")
-                em.fa.fa-italic
-              button.btn.btn-sm.btn-default(type='button', title='链接', ng-click="execCommand('createlink')")
-                em.fa.fa-link
-              button.btn.btn-sm.btn-default(type='button', title="Html编辑器" ng-class="{ 'nw-button--active': editMode }", ng-click='toggleEditMode()')
-                em.fa.fa-pencil
-            .nw-editor
-              textarea.nw-editor__src(ng-show="editMode", ng-model="content") 
-              iframe.nw-editor__res(scrolling="{{ autoexpand ? 'no' : 'yes' }}", frameBorder="0", ng-hide="editMode", ng-model="content", ng-wig-editable='')
-        textarea(ng-wig="recruit.post.content") 
-        br
-        button(type="submit").btn.btn-primary.btn-sm.mb 发布
+      ueditor(config="recruit.editorConfig" ng-model='post.content')
+      br
+      button(type="submit").btn.btn-primary.btn-sm.mb 发布
 

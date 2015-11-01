@@ -28,35 +28,10 @@ h3 团队介绍
                     img-crop(image='form.myImage', result-image='form.myCroppedImage', area-type="{{form.imgcropType}}")
 
         fieldset
-          .form-group
-            label.col-sm-2.control-label 基地的一些介绍,内容控制在300字以上~
-            .col-sm-10
-              script(type='text/ng-template', id="ng-wig/views/ng-wig.html")
-                .ng-wig
-                  .btn-group.btn-group-sm.wd-wide
-                    button.btn.btn-sm.btn-default(type='button', title='Header', ng-click="execCommand('formatblock', '<h1>')")
-                      em.fa.fa-header
-                    button.btn.btn-sm.btn-default(type='button', title='Paragraph', ng-click="execCommand('formatblock', '<p>')")
-                      em.fa.fa-paragraph
-                    button.btn.btn-sm.btn-default(type='button', title='Unordered List', ng-click="execCommand('insertunorderedlist')")
-                      em.fa.fa-list-ul
-                    button.btn.btn-sm.btn-default(type='button', title='Ordered List', ng-click="execCommand('insertorderedlist')")
-                      em.fa.fa-list-ol
-                    button.btn.btn-sm.btn-default(type='button', title='Bold', ng-click="execCommand('bold')")
-                      em.fa.fa-bold
-                    button.btn.btn-sm.btn-default(type='button', title='Italic', ng-click="execCommand('italic')")
-                      em.fa.fa-italic
-                    button.btn.btn-sm.btn-default(type='button', title='link', ng-click="execCommand('createlink')")
-                      em.fa.fa-link
-                    button.pull-right.btn.btn-sm.btn-default(type='button', title="Edit Html" ng-class="{ 'nw-button--active': editMode }", ng-click='toggleEditMode()')
-                      em.fa.fa-pencil
-                  .nw-editor
-                    textarea.nw-editor__src(ng-show="editMode", ng-model="content") 
-                    iframe.nw-editor__res(scrolling="{{ autoexpand ? 'no' : 'yes' }}", frameBorder="0", ng-hide="editMode", ng-model="content", ng-wig-editable='')
-              textarea(ng-wig="form.wysiwygContent") 
+          ueditor(config="form.editorConfig" ng-model="content" required="")
         fieldset
           .form-group
-            .col-sm-4.col-sm-offset-2
+            .col-sm-2.pull-right
               button.btn.btn-default(type='submit' ng-click='form.reset()') 取消
               button.btn.btn-primary(type='submit' ng-click='form.saveIntroduce()') 保存
 // END panel
