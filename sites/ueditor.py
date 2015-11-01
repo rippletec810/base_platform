@@ -9,7 +9,7 @@ import os
 import web
 from route import route
   
-ueconfig_dir = 'static/upload'  
+ueconfig_dir = 'upload'  
 ueconfig_url = '/root/base_platform/ueditor/' + ueconfig_dir
   
   
