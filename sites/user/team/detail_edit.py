@@ -38,8 +38,9 @@ class TeamDetailEdit:
             else:
                 db.update('teaminfo', vars = vars, where = where,
                           logo_base64 = input.team_logo,
-                          dsecription = input.description,
+                          description = input.description,
                           project_desc = input.project_description)
-        except:
+        except Exception,e:
+            print e
             return output(700)
         return output(200)
