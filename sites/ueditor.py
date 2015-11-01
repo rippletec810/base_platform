@@ -10,7 +10,7 @@ import web
 from route import route
   
 ueconfig_dir = 'upload'  
-ueconfig_url = '/root/base_platform/ueditor/' + ueconfig_dir
+ueconfig_url = '../ueditor/' + ueconfig_dir
   
   
 def listImage(rootDir, retlist):  
