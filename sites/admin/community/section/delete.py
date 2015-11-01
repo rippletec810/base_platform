@@ -9,18 +9,20 @@ from route import route
 @route('/community/section/delete')
 class CommunitySectionDelete:
     def POST(self):
-        input=web.input()
+        input=web.input(section_id = None)
+        if input.section_id == None:
+            return output(110)
+        try:
+            input.section_id = int(input.section_id)
+        except:
+            return output(111)
+
         session=web.ctx.session
         if not session.has_key('user_id'):
             return output(411)
-        if session['user_type']!=0:
+        if session['user_type'] not in (0, 1):
             return output(410)
-        if input.section_id==None:
-            return output(110)
-        try:
-            input.section_id=int(input.section_id)
-        except:
-            output(111)
+
         db=getDb()
         result=db.select('section',vars={'section_id':input.section_id},where='section_id=$section_id')
         if len(result)==0:
