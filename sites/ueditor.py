@@ -28,7 +28,7 @@ def saveUploadFile(fileName, content):
     fout.write(content) # writes the uploaded file to the newly created file.  
     fout.close() # closes the file, upload complete.  
   
-@route('/Ue_ImageUp')
+@route('/ue_imageUp')
 class Ue_ImageUp:  
     def GET(self):  
         reqData = web.input()  
@@ -48,7 +48,7 @@ class Ue_ImageUp:
         saveUploadFile(newFileName, fileObj.file.read())  
         return "{'url':'" + ueconfig_url + '/' + newFileName + "','title':'" + picTitle + "','original':'" + fileName + "','state':'" + "SUCCESS" + "'}"  
   
-@route('/Ue_FileUp')
+@route('/ue_fileUp')
 class Ue_FileUp:  
     def GET(self):  
         web.header("Content-Type", "text/html; charset=utf-8")  
@@ -65,7 +65,7 @@ class Ue_FileUp:
         saveUploadFile(newFileName, fileObj.file.read())  
         return "{'url':'" + ueconfig_url + '/' + newFileName + "','fileType':'" + ext + "','original':'" + fileName + "','state':'" + "SUCCESS" + "'}"  
   
-@route('/Ue_ScrawlUp')
+@route('/ue_scrawlUp')
 class Ue_ScrawlUp:  
     def GET(self):  
         web.header("Content-Type", "text/html; charset=utf-8")  
@@ -86,7 +86,7 @@ class Ue_ScrawlUp:
             saveUploadFile(fileName, base64.decodestring(base64Content))  
             return "{'url':'" + ueconfig_url + '/' + fileName + "',state:'" + "SUCCESS" + "'}"  
   
-@route('/Ue_GetRemoteImage')
+@route('/ue_getRemoteImage')
 class Ue_GetRemoteImage:  
     def GET(self):  
         web.header("Content-Type", "text/html; charset=utf-8")  
@@ -111,7 +111,7 @@ class Ue_GetRemoteImage:
         outlist = "ue_separate_ue".join(outlist)  
         return "{'url':'" + outlist + "','tip':'远程图片抓取成功！','srcUrl':'" + urls + "'}"  
   
-@route('/Ue_GetMovie')
+@route('/ue_getMovie')
 class Ue_GetMovie:  
     def POST(self):  
         reqData = web.input()  
@@ -122,7 +122,7 @@ class Ue_GetMovie:
         web.debug(htmlContent)  
         return htmlContent  
   
-@route('/Ue_ImageManager')
+@route('/ue_imageManager')
 class Ue_ImageManager:  
     def POST(self):  
         reqData = web.input()  
