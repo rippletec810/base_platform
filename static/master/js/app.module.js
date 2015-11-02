@@ -29,6 +29,7 @@
             'app.translate',
             'app.settings',
             'app.icons',
+            'app.forms',
             'app.controllers'
         ])              
 })();

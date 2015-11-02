@@ -2,22 +2,52 @@
   'use strict';
 
   angular
-    .module('app.controllers') 
+    .module('app.controllers')
     .controller('TeamRecordController', TeamRecordController);
 
-  TeamRecordController.$inject = ['$filter','$anchorScroll','$location', 'teamResourceApi','ngDialog'];
+  TeamRecordController.$inject = ['$scope', '$anchorScroll', '$location', 'teamResourceApi', 'schoolResourceApi', 'ngDialog'];
 
-  function TeamRecordController($filter,$anchorScroll,$location, teamResourceApi,ngDialog) {
+  function TeamRecordController($scope, $anchorScroll, $location, teamResourceApi, schoolResourceApi, ngDialog) {
     var vm = this;
     vm.dateList = [];
-    activate();
-    vm.ColorRandom =function(i) {
-        var color = ['timeline-badge primary', 'timeline-badge warning', 'timeline-badge danger', 'timeline-badge info', 'timeline-badge success'];
-        return color[i];
+    vm.secondType = vm.firstType = '暂无';
+    vm.typeList = {
+      'out': [{
+        item: '暂无类型',
+        children: []
+      }],
+      'in': [{
+        item: '暂无类型',
+        children: []
+      }]
     }
-    vm.gotoEdit=function(){
+    vm.ColorRandom = function(i) {
+      var color = ['timeline-badge primary', 'timeline-badge warning', 'timeline-badge danger', 'timeline-badge info', 'timeline-badge success'];
+      return color[i];
+    }
+    vm.gotoEdit = function() {
       document.querySelector('input[name=amount]').focus();
     }
+    vm.getTypeList = function() {
+      schoolResourceApi.PaymentList(function(data) {
+        vm.typeList = data.data ? angular.fromJson(data.data) : vm.typeList;
+        vm.typeItems = vm.typeList[vm.todo.type];
+        console.log(vm.typeItems)
+        vm.firstType = vm.typeItems[0].item;
+        vm.getSecondList();
+      })
+    }
+    vm.getSecondList = function() {
+      console.log(vm.typeItems)
+      for (var i in vm.typeItems)
+        if (vm.typeItems[i].item == vm.firstType)
+          vm.secondTypeItems = vm.typeItems[i].children ? vm.typeItems[i].children : [{
+            item: '暂无'
+          }];
+      vm.secondType = vm.secondTypeItems[0].item;
+    }
+    activate();
+
     function activate() {
       function haskey(obj, key) {
         for (var i in obj) {
@@ -26,20 +56,29 @@
         }
         return false;
       }
-      vm.gotoTarget = function(event,target) {
-            vm.selectDate = target;
-            $location.hash(target);
-            $anchorScroll();
+      vm.gotoTarget = function(event, target) {
+        vm.selectDate = target;
+        $location.hash(target);
+        $anchorScroll();
       }
+      vm.isEmpty = function(obj) {
+        var i = 0;
+        for (var key in obj) {
+          ++i;
+        }
+        return !!!i;
+      }
+
       function getList() {
         vm.items = {};
+        vm.getTypeList();
         teamResourceApi.FlowListQuery({
           page_num: 1,
           page_size: 100
         }, function(data) {
           for (var i in data.data.flow_list) {
             data.data.flow_list[i].add_time = moment.unix(data.data.flow_list[i].add_time).format('L');
-            data.data.flow_list[i].class=vm.ColorRandom(i%5);
+            data.data.flow_list[i].class = vm.ColorRandom(i % 5);
           }
           for (var i in data.data.flow_list) {
             if (haskey(vm.items, data.data.flow_list[i].add_time))
@@ -55,7 +94,7 @@
       }
       vm.editingTodo = false;
       vm.todo = {
-        type: '+',
+        type: 'in',
         description: '',
         amount: ''
       };
@@ -71,9 +110,10 @@
         } else {
           teamResourceApi.AddFlow({
             description: vm.todo.description,
-            amount: parseInt(vm.todo.type + vm.todo.amount)
+            payment_type_name: vm.todo.type == 'out' ? '支出类型' : '收入类型' + ':' + vm.firstType + '-' + vm.secondType,
+            amount: parseInt((vm.todo.type == 'in' ? '+' : '-') + vm.todo.amount)
           }, function(data) {
-             getList();
+            getList();
           })
           vm.todo.amount = '';
           vm.todo.description = '';
