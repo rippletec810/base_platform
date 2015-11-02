@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.extras')
+    .module('app.controllers') 
     .controller('TeamRecordController', TeamRecordController);
 
   TeamRecordController.$inject = ['$filter','$anchorScroll','$location', 'teamResourceApi','ngDialog'];

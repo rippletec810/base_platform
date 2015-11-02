@@ -21,6 +21,10 @@
         editor.addListener('ready', function() {
           editor.setContent(ngModel.$viewValue);
         })
+        scope.$on('$stateChangeStart', function() {
+          console.log(123)
+          editor.destroy()
+        })
         if (ngModel) {
           //Model数据更新时，更新百度UEditor
           ngModel.$render = function() {

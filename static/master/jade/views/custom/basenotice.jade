@@ -24,7 +24,7 @@ h3 通知管理
                 td {{notice.title | limitTo:15}}
                 td {{notice.content | removeTag | limitTo:50 }}
                 td
-                  button(type="button" ng-click="delectNotice($index,notice)").btn.btn-sm.btn-danger
+                  button(type="button" ng-click="art.delectNotice($index,notice)").btn.btn-sm.btn-danger
                     em.icon-trash
       p.text-center(ng-show='!art.notices||art.notices.length<1')
             |暂无任何数据
@@ -47,7 +47,7 @@ h3 通知管理
       script(type="text/ng-template", id="confirm")
         .ngdialog-message.clearfix
           h3.text-center
-            | 确定删除该比赛?
+            | 确定删除该该通知?
           
           button.btn.btn-primary.mr.pull-right(type='button', ng-click='confirm()') 确定
           button.btn.btn-default.pull-left(type='button', ng-click="closeThisDialog()") 取消

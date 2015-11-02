@@ -7,7 +7,7 @@
   'use strict';
 
   angular
-    .module('app.pages')
+    .module('app.controllers')
     .controller('ChangePasswordController', ChangePasswordController);
 
   ChangePasswordController.$inject = ['$http','$timeout', '$state','schoolResourceApi'];

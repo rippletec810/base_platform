@@ -7,7 +7,7 @@
   'use strict';
 
   angular
-    .module('app.tables')
+    .module('app.controllers')
     .controller('teamworkerController', teamworkerController)
     .filter('typeFormat', typeFormat)
 

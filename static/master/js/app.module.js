@@ -21,21 +21,14 @@
             'app.services',
             'app.filters',
             'app.routes',
+            'app.colors',
+            'app.utils',
             'app.sidebar',
             'app.preloader',
             'app.loadingbar',
             'app.translate',
             'app.settings',
             'app.icons',
-            'app.notify',
-            'app.bootstrapui',
-            'app.panels',
-            'app.forms',
-            'app.pages',
-            'app.tables',
-            'app.extras',
-            'app.mailbox',
-            'app.utils',
             'app.controllers'
         ])              
 })();

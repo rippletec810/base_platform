@@ -108,6 +108,14 @@
         },
         templateUrl: helper.basepath('common/recover.html')
       })
+      .state('page.changepassword', {
+        url: '/changepassword',
+        title: '修改密码',
+        data: {
+          authorizedRoles: [USER_ROLES.all]
+        },
+        templateUrl: helper.basepath('common/changepassword.html')
+      })
       // --基地管理员--
       // ------------------------
       .state('admin', {

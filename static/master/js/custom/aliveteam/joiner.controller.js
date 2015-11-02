@@ -7,7 +7,7 @@
   'use strict';
 
   angular
-    .module('app.tables')
+    .module('app.controllers')
     .controller('JoinerController', JoinerController)
     .filter('typeFormat', typeFormat)
   typeFormat.$inject = ['APP_PARMAS'];
